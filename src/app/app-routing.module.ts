@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from "./home/home.component";
-import {LoginComponent} from "./login/login.component";
-import {RegisterTeacherComponent} from "./register-teacher/register-teacher.component";
-import {RegisterStudentComponent} from "./register-student/register-student.component";
-import {ForgotPasswordComponent} from "./forgot-password/forgot-password.component";
-import {ProfileStudentComponent} from "./profile-student/profile-student.component";
-import {ProfileTeacherComponent} from "./profile-teacher/profile-teacher.component";
-import {VerificationComponent} from "./verification/verification.component";
-import {SubscriptionsComponent} from "./subscriptions/subscriptions.component";
-import {CreateArticleComponent} from "./create-article/create-article.component";
-import {ArticlesComponent} from "./articles/articles.component";
-import {ArticleComponent} from "./article/article.component";
+import {HomeComponent} from './home/home.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterTeacherComponent} from './register-teacher/register-teacher.component';
+import {RegisterStudentComponent} from './register-student/register-student.component';
+import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
+import {ProfileStudentComponent} from './profile-student/profile-student.component';
+import {ProfileTeacherComponent} from './profile-teacher/profile-teacher.component';
+import {VerificationComponent} from './verification/verification.component';
+import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
+import {CreateArticleComponent} from './create-article/create-article.component';
+import {ArticlesComponent} from './articles/articles.component';
+import {ArticleComponent} from './article/article.component';
 
 
 const routes: Routes = [
