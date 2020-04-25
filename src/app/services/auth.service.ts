@@ -17,6 +17,10 @@ export class AuthService {
   private logInURL = '/api/login';
   private registerURL = '/api/register';
   private getLanguagesURL = '/api/languages';
+  // private logoutURL = 'http://localhost:3000/api/logout';
+  // private logInURL = 'http://localhost:3000/api/login';
+  // private registerURL = 'http://localhost:3000/api/register';
+  // private getLanguagesURL = 'http://localhost:3000/api/languages';
 
   // tslint:disable-next-line:variable-name
   public _logInUser = false;
@@ -29,27 +33,19 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    console.log('isLoggedIn:');
-    console.log(new Date().toUTCString());
-    console.log(moment(new Date().toUTCString()));
-    console.log(this.getExpiration());
-    if (!moment(new Date().toUTCString()).isBefore(this.getExpiration()) && localStorage.getItem('token') && this._logInUser) {
-      this.logoutUser();
-    }
-    return moment(new Date().toUTCString()).isBefore(this.getExpiration());
+    return this._logInUser;
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+  set logInUserBool(logInUser: boolean) {
+    this._logInUser = logInUser;
   }
 
   logoutUser() {
+    this.http.get(this.logoutURL);
     localStorage.removeItem('token');
     localStorage.removeItem('role');
-    localStorage.removeItem('expires_at');
     this._logInUser = false;
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     this.router.navigate(['/login']);
   }
 

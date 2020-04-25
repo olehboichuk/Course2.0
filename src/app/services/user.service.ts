@@ -16,6 +16,12 @@ export class UserService {
   private userRoleURL = '/api/user/role';
   private userLanguagesURL = '/api/user/languages';
   private languagesURL = '/api/languages';
+  // private userURL = 'http://localhost:3000/api/user/profile';
+  // private userSubscriptionsURL = 'http://localhost:3000/api/user/subscriptions';
+  // private subscribeURL = 'http://localhost:3000/api/user/';
+  // private userRoleURL = 'http://localhost:3000/api/user/role';
+  // private userLanguagesURL = 'http://localhost:3000/api/user/languages';
+  // private languagesURL = 'http://localhost:3000/api/languages';
 
   constructor(private http: HttpClient, private router: Router) {
   }

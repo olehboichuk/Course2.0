@@ -12,6 +12,8 @@ export class ArticleService {
   // URIs
   private topicsURL = '/api/topics';
   private articleURL = '/api/articles';
+  // private topicsURL = 'http://localhost:3000/api/topics';
+  // private articleURL = 'http://localhost:3000/api/articles';
 
 
   constructor(private http: HttpClient) {

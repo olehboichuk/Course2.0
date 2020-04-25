@@ -1,8 +1,10 @@
 let express = require('express');
+let cookieParser = require('cookie-parser');
 let router = express.Router();
 let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
+router.use(cookieParser());
 const {Pool} = require('pg');
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
@@ -54,28 +56,16 @@ router.post('/login', function (req, res) {
     let token = jwt.sign({id: result.rows[0].id}, config.secret, {
       expiresIn: 83600 // expires in 1 hour
     });
-    let tokenCreate = new Date();
-    console.log('tokenCreate:');
-    console.log(tokenCreate);
-    Date.prototype.addHours = function (h) {
-      this.setTime(this.getTime() + (h * 60 * 60 * 1000));
-      return this;
-    }
-    tokenCreate.addHours(1);
-    tokenCreate = tokenCreate.toLocaleString();
-    console.log('tokenCreate +1:');
-    console.log(tokenCreate);
-    res.status(200).send({
+    res.cookie('token', 'token').status(200).send({
       auth: true,
       token: token,
-      role: result.rows[0].role,
-      expiresIn: tokenCreate,
       active: result.rows[0].active
     });
   });
 });
 
 router.get('/logout', function (req, res) {
+  res.cookie("token", null);
   res.status(200).send({auth: false, token: null});
 });
 

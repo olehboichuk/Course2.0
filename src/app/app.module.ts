@@ -82,7 +82,7 @@ import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/materia
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true,
-  },{
+  }, {
     provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
     useValue: {duration: 2500}
   }],

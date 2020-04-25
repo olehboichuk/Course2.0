@@ -40,14 +40,8 @@ export class LoginComponent implements OnInit {
     this.loginForm.controls.password.disable();
     this.loginService.login(user)
       .subscribe(data => {
-          console.log(data.active);
           if (data.active) {
-            console.log('data.expiresIn:');
-            console.log(data.expiresIn);
-            console.log('JSON.stringify(data.expiresIn):');
-            console.log(JSON.stringify(data.expiresIn));
             localStorage.setItem('token', data.token);
-            localStorage.setItem('expires_at', JSON.stringify(data.expiresIn));
             localStorage.setItem('role', data.role);
             this.userService.getUserRole().subscribe(res => {
               console.log(res);
