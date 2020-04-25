@@ -7,10 +7,6 @@ let UsersController = require('./handlers/UsersController.js');
 let LanguagesControler = require('./handlers/LanguagesControler.js');
 let AuthController = require('./auth/AuthController.js');
 
-// Create link to Angular build directory
-let distDir = __dirname + "/dist/";
-app.use(express.static(distDir));
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(function (req, res, next) {
@@ -22,6 +18,13 @@ app.use(function (req, res, next) {
 app.use('/api', UsersController);
 app.use('/api', AuthController);
 app.use('/api', LanguagesControler);
+
+// Create link to Angular build directory
+app.use(express.static(__dirname + '/dist'));
+
+app.get('/*', function(req,res) {
+  res.sendFile(path.join(__dirname+'/dist/index.html'));
+});
 
 app.listen(port, () => {
     console.log('Server started on port 3000');
