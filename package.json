@@ -7,8 +7,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --output-path dist",
-    "start": "node /frontend/backend/app.js"
+    "heroku-postbuild": "ng build --prod",
+    "start": "node /frontend/app.js"
   },
   "private": true,
   "dependencies": {
