@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginModel} from "../models/login.model";
-import {Router} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {UserService} from "../services/user.service";
+import {LoginModel} from '../models/login.model';
+import {Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {UserService} from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -31,51 +31,57 @@ export class LoginComponent implements OnInit {
   }
 
   public do_login(): void {
-    const user = <LoginModel>{
+    const user = {
       login: this.loginForm.get('login').value,
       password: this.loginForm.get('password').value
-    };
+    } as LoginModel;
     this.loading = true;
-    this.loginForm.controls['login'].disable();
-    this.loginForm.controls['password'].disable();
+    this.loginForm.controls.login.disable();
+    this.loginForm.controls.password.disable();
     this.loginService.login(user)
       .subscribe(data => {
-        console.log(data.active);
+          console.log(data.active);
           if (data.active) {
-            localStorage.setItem("token", data.token);
-            localStorage.setItem("expires_at", JSON.stringify(data.expiresIn));
-            localStorage.setItem("role", data.role);
+            console.log('data.expiresIn:');
+            console.log(data.expiresIn);
+            console.log('JSON.stringify(data.expiresIn):');
+            console.log(JSON.stringify(data.expiresIn));
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('expires_at', JSON.stringify(data.expiresIn));
+            localStorage.setItem('role', data.role);
             this.userService.getUserRole().subscribe(res => {
-              console.log(res)
-              for (let i in res){
-                this.roles[i]=res[i].name;
+              console.log(res);
+              // tslint:disable-next-line:forin
+              for (const i in res) {
+                this.roles[i] = res[i].name;
               }
               this.loginService._logInUser = true;
-              if (this.roles.includes("TEACHER")) {
+              if (this.roles.includes('TEACHER')) {
                 this.router.navigate(['/teacher-profile']);
-              } else if (this.roles.includes("ADMIN")) {
+              } else if (this.roles.includes('ADMIN')) {
                 this.router.navigate(['/admin']);
               } else {
                 this.router.navigate(['/student-profile']);
               }
             });
-          }else {
+          } else {
             this.router.navigate(['/']);
           }
         },
         error => {
-          if (error.error.message)
+          if (error.error.message) {
             this.error = error.error.message;
-          else
-            this.error = 'No Internet connection'
+          } else {
+            this.error = 'No Internet connection';
+          }
           this.loading = false;
-          this.loginForm.controls['login'].enable();
-          this.loginForm.controls['password'].enable();
+          this.loginForm.controls.login.enable();
+          this.loginForm.controls.password.enable();
         });
   }
 
   ngOnInit() {
-    this.roles=[];
+    this.roles = [];
     this.loginForm = this.formBuilder.group({
       login: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],

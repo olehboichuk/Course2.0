@@ -29,6 +29,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    console.log('isLoggedIn:');
+    console.log(!moment(new Date().toUTCString()).isBefore(this.getExpiration()));
     if (!moment(new Date().toUTCString()).isBefore(this.getExpiration()) && localStorage.getItem('token') && this._logInUser) {
       this.logoutUser();
     }
