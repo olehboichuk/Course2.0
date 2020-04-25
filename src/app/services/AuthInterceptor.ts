@@ -6,14 +6,25 @@ import {
 } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
+import {CookieService} from 'ngx-cookie';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+  // tslint:disable-next-line:variable-name
+  constructor(private _cookieService: CookieService) {
+  }
+
+  getCookie(key: string) {
+    return this._cookieService.get(key);
+  }
+
   intercept(req: HttpRequest<any>,
             next: HttpHandler): Observable<HttpEvent<any>> {
 
+    // const idToken = this.getCookie('token');gi
     const idToken = localStorage.getItem('token');
+    console.log(this.getCookie('token'));
 
     if (idToken) {
       const cloned = req.clone({

@@ -56,7 +56,7 @@ router.post('/login', function (req, res) {
     let token = jwt.sign({id: result.rows[0].id}, config.secret, {
       expiresIn: 83600 // expires in 1 hour
     });
-    res.cookie('token', 'token').status(200).send({
+    res.cookie('token', token, {maxAge: 83600}).status(200).send({
       auth: true,
       token: token,
       active: result.rows[0].active

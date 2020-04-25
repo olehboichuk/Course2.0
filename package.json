@@ -32,6 +32,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",
     "ng-starrating": "v1.0.6",
+    "ngx-cookie": "4.1.1",
     "pg": "7.4.3",
     "rxjs": "~6.4.0",
     "stars-rating": "^1.1.0",
@@ -43,6 +44,7 @@
     "@angular/cli": "~8.3.23",
     "@angular/compiler-cli": "~8.2.14",
     "@angular/language-service": "~8.2.14",
+    "@nguniversal/express-engine": "^9.1.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
@@ -55,11 +57,11 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "localstorage-polyfill": "^1.0.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
-    "typescript": "^3.5.3",
-    "localstorage-polyfill": "^1.0.1"
+    "typescript": "^3.5.3"
   },
   "engines": {
     "node": "12.6.0",

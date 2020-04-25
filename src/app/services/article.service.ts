@@ -3,43 +3,39 @@ import {HttpClient} from '@angular/common/http';
 import {TopicModel} from '../models/topic.model';
 import {ArticleModel} from '../models/article.model';
 import {ArticlesModel} from '../models/articles.model';
+import {Router} from '@angular/router';
+import {Uris} from './uris';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ArticleService {
-  // URIs
-  private topicsURL = '/api/topics';
-  private articleURL = '/api/articles';
-  // private topicsURL = 'http://localhost:3000/api/topics';
-  // private articleURL = 'http://localhost:3000/api/articles';
 
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private uri: Uris) {
   }
 
   getTopics() {
-    return this.http.get<TopicModel[]>(this.topicsURL);
+    return this.http.get<TopicModel[]>(this.uri.topicsURL);
   }
 
   createArticle(article: ArticleModel) {
-    return this.http.post(this.articleURL, article);
+    return this.http.post(this.uri.articleURL, article);
   }
 
   getArticles() {
-    return this.http.get<ArticlesModel[]>(this.articleURL);
+    return this.http.get<ArticlesModel[]>(this.uri.articleURL);
   }
 
   deleteArticleById(id: number) {
-    return this.http.delete(this.articleURL + '/' + id);
+    return this.http.delete(this.uri.articleURL + '/' + id);
   }
 
   getArticleById(id: number) {
-    return this.http.get<ArticlesModel>(this.articleURL + '/' + id);
+    return this.http.get<ArticlesModel>(this.uri.articleURL + '/' + id);
   }
 
   editArticle(article: ArticleModel) {
-    return this.http.put(this.articleURL, article);
+    return this.http.put(this.uri.articleURL, article);
   }
 }

@@ -6,30 +6,21 @@ import {LanguagesList} from '../models/languagesList';
 import {Token} from '../models/token';
 import {Router} from '@angular/router';
 import * as moment from 'moment';
+import {Uris} from './uris';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AuthService {
-  // URIs
-  private logoutURL = '/api/logout';
-  private logInURL = '/api/login';
-  private registerURL = '/api/register';
-  private getLanguagesURL = '/api/languages';
-  // private logoutURL = 'http://localhost:3000/api/logout';
-  // private logInURL = 'http://localhost:3000/api/login';
-  // private registerURL = 'http://localhost:3000/api/register';
-  // private getLanguagesURL = 'http://localhost:3000/api/languages';
-
   // tslint:disable-next-line:variable-name
   public _logInUser = false;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private uri: Uris) {
   }
 
   login(user: LoginModel) {
-    return this.http.post<Token>(this.logInURL, user);
+    return this.http.post<Token>(this.uri.logInURL, user);
   }
 
   isLoggedIn() {
@@ -41,7 +32,7 @@ export class AuthService {
   }
 
   logoutUser() {
-    this.http.get(this.logoutURL);
+    this.http.get(this.uri.logoutURL);
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     this._logInUser = false;
@@ -50,11 +41,11 @@ export class AuthService {
   }
 
   registerUser(user: UserModel) {
-    return this.http.post(this.registerURL, user);
+    return this.http.post(this.uri.registerURL, user);
   }
 
   getLanguages() {
-    return this.http.get<LanguagesList[]>(this.getLanguagesURL);
+    return this.http.get<LanguagesList[]>(this.uri.getLanguagesURL);
   }
 
 }

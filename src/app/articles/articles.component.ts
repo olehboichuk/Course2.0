@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ArticleService} from "../services/article.service";
-import {UserService} from "../services/user.service";
-import {ArticlesModel} from "../models/articles.model";
+import {ArticleService} from '../services/article.service';
+import {UserService} from '../services/user.service';
+import {ArticlesModel} from '../models/articles.model';
 import * as jwt_decode from 'jwt-decode';
-import {delay} from "rxjs/operators";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {delay} from 'rxjs/operators';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-articles',
@@ -25,13 +25,13 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {
     this.deletesArticles = [];
     this.deletesArticlesClass = [];
-    this.isLoading = true;
+    // this.isLoading = true;
     this.userId = jwt_decode(localStorage.getItem('token')).id;
     this.articlesService.getArticles()
       .subscribe(articlesData => {
-        this.isLoading = false;
         this.articles = articlesData;
         console.log(this.articles);
+        this.isLoading = false;
       });
   }
 
