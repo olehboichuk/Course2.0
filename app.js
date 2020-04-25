@@ -4,9 +4,9 @@ const express = require('express'),
     app = express(),
     port = parseInt(process.env.PORT, 10) || 3000;
 
-let UsersController = require('./handlers/UsersController.js');
-let LanguagesControler = require('./handlers/LanguagesControler.js');
-let AuthController = require('./auth/AuthController.js');
+let UsersController = require('./backend/handlers/UsersController.js');
+let LanguagesControler = require('./backend/handlers/LanguagesControler.js');
+let AuthController = require('./backend/auth/AuthController.js');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
