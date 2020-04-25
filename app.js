@@ -3,9 +3,9 @@ const express = require('express'),
     app = express(),
     port = parseInt(process.env.PORT, 10) || 3000;
 
-let UsersController = require('./backend/handlers/UsersController');
-let LanguagesControler = require('./backend/handlers/LanguagesControler');
-let AuthController = require('./backend/auth/AuthController');
+let UsersController = require('./backend/handlers/UsersController.js');
+let LanguagesControler = require('./backend/handlers/LanguagesControler.js');
+let AuthController = require('./backend/auth/AuthController.js');
 
 // Create link to Angular build directory
 let distDir = __dirname + "/dist/";

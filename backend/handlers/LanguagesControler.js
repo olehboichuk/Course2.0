@@ -5,9 +5,9 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 let jwt = require('jsonwebtoken');
-const sqlLanguages = require('../queryes/language');
-const sqlTopics = require('../queryes/topic');
-const sqlArticles = require('../queryes/article');
+const sqlLanguages = require('./../queryes/language.js');
+const sqlTopics = require('./../queryes/topic.js');
+const sqlArticles = require('./../queryes/article.js');
 
 // const pool = new Pool({
 //     user: 'postgres',

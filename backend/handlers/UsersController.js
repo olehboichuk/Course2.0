@@ -5,7 +5,7 @@ let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 let jwt = require('jsonwebtoken');
-const sql = require('../queryes/user');
+const sql = require('./../queryes/user.js');
 
 // const pool = new Pool({
 //     user: 'postgres',

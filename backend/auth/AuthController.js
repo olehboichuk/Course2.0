@@ -6,8 +6,8 @@ router.use(bodyParser.json());
 const {Pool} = require('pg');
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
-const sql = require('../queryes/user');
-let config = require('../config');
+const sql = require('./../queryes/user.js');
+let config = require('./../config.js');
 // const pool = new Pool({
 //     user: 'postgres',
 //     host: 'localhost',
