@@ -15,8 +15,8 @@ export class SidebarComponent implements OnInit {
   private admin = false;
   private teacher = false;
   private student = false;
-  private href: string = "";
-  private SIDEBAR_DATA: Sidebar[] = [];
+  private href = '';
+  public SIDEBAR_DATA: Sidebar[] = [];
   private notificationCount = 0;
   private isLoading = false;
   private roles: string[];

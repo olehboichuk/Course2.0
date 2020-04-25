@@ -8,7 +8,8 @@ import {AuthService} from "../services/auth.service";
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  private _authService: AuthService;
+  // tslint:disable-next-line:variable-name
+  public _authService: AuthService;
 
   constructor(private authService: AuthService, private httpClient: HttpClient) {
     this._authService = authService;

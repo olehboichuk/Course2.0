@@ -13,12 +13,12 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./profile-student.component.scss']
 })
 export class ProfileStudentComponent implements OnInit {
-  private changeForm: FormGroup;
+  public changeForm: FormGroup;
   public loading = true;
-  private edited = true;
-  private user: UserModel;
-  private isMyProfile: boolean;
-  private userId: string;
+  public edited = true;
+  public user: UserModel;
+  public isMyProfile: boolean;
+  public userId: string;
 
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private userService: UserService, public route: ActivatedRoute) {
   }

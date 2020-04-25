@@ -8,8 +8,8 @@ import {UserService} from "../services/user.service";
   styleUrls: ['./subscriptions.component.scss']
 })
 export class SubscriptionsComponent implements OnInit {
-  private users: UserModel [] = [];
-  loading = true;
+  public users: UserModel [] = [];
+  public loading = true;
 
   constructor(public userService: UserService) {
   }

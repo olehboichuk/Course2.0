@@ -15,20 +15,20 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./profile-teacher.component.scss']
 })
 export class ProfileTeacherComponent implements OnInit {
-  private changeForm: FormGroup;
+  public changeForm: FormGroup;
   public loading = true;
   public loadingSubs = false;
-  private edited = true;
-  private user: UserModel;
-  private languages: LanguagesList [];
-  private langListNames = '';
-  private langListIds: number[] = [];
-  private star: number;
-  private isMyProfile: boolean;
-  private userId: string;
-  private subscribe = true;
-  private subscribeToIdsList: number[] = [];
-  private subscribeText: string;
+  public edited = true;
+  public user: UserModel;
+  public languages: LanguagesList [];
+  public langListNames = '';
+  public langListIds: number[] = [];
+  public star: number;
+  public isMyProfile: boolean;
+  public userId: string;
+  public subscribe = true;
+  public subscribeToIdsList: number[] = [];
+  public subscribeText: string;
 
   constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder, private userService: UserService, public route: ActivatedRoute) {
   }

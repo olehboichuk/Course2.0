@@ -15,16 +15,17 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class CreateArticleComponent implements OnInit {
 
-  private createArticleForm: FormGroup;
-  private articleTopics: TopicModel [];
-  private loading = false;
-  private isEdit = false;
-  private err = false;
-  private articleId: string;
-  private topicsListIds: number[] = [];
-  private btnText: string;
-  private headlineText: string;
+  public createArticleForm: FormGroup;
+  public articleTopics: TopicModel [];
+  public loading = false;
+  public isEdit = false;
+  public err = false;
+  public articleId: string;
+  public topicsListIds: number[] = [];
+  public btnText: string;
+  public headlineText: string;
 
+  // tslint:disable-next-line:max-line-length
   constructor(private snackBar: MatSnackBar, public articleService: ArticleService, public articlesService: ArticleService, private httpClient: HttpClient, private formBuilder: FormBuilder, private router: Router, public route: ActivatedRoute) {
   }
 

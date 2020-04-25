@@ -25,7 +25,7 @@ export class RegisterStudentComponent implements OnInit {
   matcher = new MyErrorStateMatcher();
   public hidePassword = true;
   public hideConfirm = true;
-  private error = '';
+  public error = '';
 
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {

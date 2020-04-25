@@ -15,13 +15,13 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class ArticleComponent implements OnInit {
 
-  private loading = false;
-  private err = false;
-  private articleId: string;
-  private article: ArticlesModel;
-  private isMyProfile: boolean;
-  userId: number;
-  private content: any;
+  public loading = false;
+  public err = false;
+  public articleId: string;
+  public article: ArticlesModel;
+  public isMyProfile: boolean;
+  public userId: number;
+  public content: any;
 
   constructor(private sanitizer: DomSanitizer,private snackBar: MatSnackBar, private router: Router, public articlesService: ArticleService, public userService: UserService, public route: ActivatedRoute) {
   }

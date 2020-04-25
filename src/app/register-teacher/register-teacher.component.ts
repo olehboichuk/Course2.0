@@ -20,14 +20,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./register-teacher.component.scss']
 })
 export class RegisterTeacherComponent implements OnInit {
-  registerForm: FormGroup;
+  public registerForm: FormGroup;
   public loading = false;
   public password: string;
-  matcher = new MyErrorStateMatcher();
-  private languages: LanguagesList [];
+  public matcher = new MyErrorStateMatcher();
+  public languages: LanguagesList [];
   public hidePassword = true;
   public hideConfirm = true;
-  private error = '';
+  public error = '';
 
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {

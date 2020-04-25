@@ -12,10 +12,10 @@ import {UserService} from "../services/user.service";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private loginForm: FormGroup;
-  private error = '';
-  private loading = false;
-  private roles:string[];
+  public loginForm: FormGroup;
+  public error = '';
+  public loading = false;
+  public roles: string[];
 
   constructor(
     private loginService: AuthService,
