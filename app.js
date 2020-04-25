@@ -21,10 +21,10 @@ app.use('/api', AuthController);
 app.use('/api', LanguagesControler);
 
 // Create link to Angular build directory
-app.use(express.static(__dirname + '/dist'));
+app.use(express.static(__dirname + '/dist/frontend'));
 
 app.get('/*', function(req,res) {
-  res.sendFile(path.join(__dirname+'/dist/index.html'));
+  res.sendFile(path.join(__dirname+'/dist/frontend/index.html'));
 });
 
 app.listen(port, () => {
@@ -39,7 +39,7 @@ app.listen(port, () => {
 //     port: 5432,
 // });
 const client = new Client({
-    connectionString: 'postgres://dssiijshzfihym:0f4f3ce480de8fdd1bd48e6e9c6190da2294dd9fe8723dd1c574d9e8a9aaf868@ec2-79-125-26-232.eu-west-1.compute.amazonaws.com:5432/d27fhgsoesbl2l',
+    connectionString: 'postgres://avzgegtvqfqmpx:39255c33de31232f84ea8d2e6a3053c226b0f1517fc1ededdd863b40037e1c9b@ec2-54-159-112-44.compute-1.amazonaws.com:5432/d3v6s6o400cft2',
     ssl: true,
 });
 
