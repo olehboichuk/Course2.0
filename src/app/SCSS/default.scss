@@ -1,0 +1,16 @@
+$header_font: "Roboto", serif;
+$header_text_color: #4672fe;
+$header_text_color_lite: #809dff;
+$no_active_color: #616161;
+$active_border: #4672fe;
+$active_btn: #4672fe;
+$form_color: #FFFFFF;
+
+.selection-off{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

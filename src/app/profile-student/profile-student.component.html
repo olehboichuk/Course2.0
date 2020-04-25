@@ -1,0 +1,49 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div class="profile" *ngIf="!loading">
+    <!--    ЗАГАЛЬНА ІНФА ПРО СТУДЕНТА-->
+    <form [formGroup]="changeForm">
+      <div class="player">
+        <img style="width: 15%;object-fit: scale-down;" src="../../assets/img/user.png"/>
+        <div class="player__info">
+          <div class="form__user">
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">Name:</p>
+              <p class="player__name">{{user.first_name}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <input matInput type="text" formControlName="first_name" pattern="[A-Z,А-Я,І]{1}[a-z,а-я,і]{2,20}"
+                     placeholder="Name:"/>
+            </mat-form-field>
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">Surname:</p>
+              <p class="player__name">{{user.last_name}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <input matInput type="text" formControlName="last_name" pattern="[A-Z,А-Я,І]{1}[a-z,а-я,і]{2,20}"
+                     placeholder="Surname:"/>
+            </mat-form-field>
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">Email:</p>
+              <p class="player__name">{{user.email}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <input matInput type="text" formControlName="email"
+                     placeholder="Email:"/>
+            </mat-form-field>
+          </div>
+          <button *ngIf="isMyProfile" mat-icon-button [matMenuTriggerFor]="editMenu">
+            <mat-icon style="color: white">more_vert</mat-icon>
+          </button>
+          <mat-menu #editMenu="matMenu" xPosition="before">
+            <button *ngIf="edited" mat-menu-item (click)="onEdit()">Edit</button>
+            <button *ngIf="edited" mat-menu-item (click)="openDialog()">Delete</button>
+            <button *ngIf="!edited" mat-menu-item [disabled]="!changeForm.valid" (click)="onSave()">Save</button>
+            <button *ngIf="!edited" mat-menu-item (click)="onCancel()">Cancel</button>
+          </mat-menu>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

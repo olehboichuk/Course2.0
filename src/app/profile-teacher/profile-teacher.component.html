@@ -1,0 +1,91 @@
+<app-sidebar></app-sidebar>
+<div class="content">
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div class="profile" *ngIf="!loading">
+    <!--    ЗАГАЛЬНА ІНФА ПРО ВИКЛАДАЧА-->
+    <form [formGroup]="changeForm">
+      <div class="player">
+        <div class="photo-rating">
+          <img style="width: 100%;object-fit: scale-down;" src="../../assets/img/teacher.png"/>
+          <star-rating class="user__img--change" [value]="star" checkedcolor="gold" uncheckedcolor="#dddddd" size="40px"
+                       readonly="true"></star-rating>
+          <p class="underrate">{{user.num_rates}} users rate</p>
+          <div *ngIf="!isMyProfile" class="wrap">
+            <div>
+              <input type="checkbox" id="toggle" [checked]="!subscribe" (click)="Subscribe()"/>
+              <label [ngClass]="{'button':true,'check':!subscribe}" for="toggle">
+              </label>
+            </div>
+            <div style=" margin-left: 36px; margin-top: 6px;" class="parent">
+              <label for="toggle" class="text sub">{{subscribeText}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="player__info">
+          <div class="form__user">
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">Name:</p>
+              <p class="player__name">{{user.first_name}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <input matInput type="text" formControlName="first_name" pattern="[A-Z,А-Я,І]{1}[a-z,а-я,і]{2,20}"
+                     placeholder="Name:"/>
+            </mat-form-field>
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">Surname:</p>
+              <p class="player__name">{{user.last_name}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <input matInput type="text" formControlName="last_name" pattern="[A-Z,А-Я,І]{1}[a-z,а-я,і]{2,20}"
+                     placeholder="Surname:"/>
+            </mat-form-field>
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">Email:</p>
+              <p class="player__name">{{user.email}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <input matInput type="text" formControlName="email"
+                     placeholder="Email:"/>
+            </mat-form-field>
+            <div *ngIf="edited" class="player__item">
+              <div class="change__form">
+                <p class="player--text">languages:</p>
+                <p class="player__name">{{langListNames}}</p>
+              </div>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <mat-select placeholder="Languages" formControlName="languages" multiple>
+                <mat-select-trigger>{{changeForm.get('languages').value ? (changeForm.get('languages').value[0] ? languages[changeForm.get('languages').value[0] - 1].name : '') : ''}}
+                  <span *ngIf="changeForm.get('languages').value?.length > 1" class="example-additional-selection">
+              (+{{changeForm.get('languages').value.length - 1}} {{changeForm.get('languages').value?.length === 2 ? 'other' : 'others'}}
+                    )
+              </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let item of languages" [value]="item.id">{{item.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="edited" class="player__item">
+              <p class="player--text">About:</p>
+              <p class="player__name">{{user.about}}</p>
+            </div>
+            <mat-form-field *ngIf="!edited" class="form__input">
+              <textarea maxlength="300" formControlName="about" class="form__textarea" matInput
+                        placeholder="About"></textarea>
+            </mat-form-field>
+          </div>
+
+          <button *ngIf="isMyProfile" mat-icon-button [matMenuTriggerFor]="editMenu">
+            <mat-icon style="color: white">more_vert</mat-icon>
+          </button>
+          <mat-menu #editMenu="matMenu" xPosition="before">
+            <button *ngIf="edited" mat-menu-item (click)="onEdit()">Edit</button>
+            <button *ngIf="edited" mat-menu-item (click)="openDialog()">Delete</button>
+            <button *ngIf="!edited" mat-menu-item [disabled]="!changeForm.valid" (click)="onSave()">Save</button>
+            <button *ngIf="!edited" mat-menu-item (click)="onCancel()">Cancel</button>
+          </mat-menu>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

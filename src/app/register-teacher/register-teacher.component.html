@@ -1,0 +1,84 @@
+<div>
+  <main>
+    <div class="content">
+      <form (submit)="onSubmit()" [formGroup]="registerForm">
+        <p class="form__headline">Sign up as teacher</p>
+          <mat-form-field class="form__input">
+            <input matInput type="text" formControlName="firstName"
+                   pattern="[A-Z,А-Я,І]{1}[a-z,а-я]{2,20}"
+                   placeholder="First name"/>
+          </mat-form-field>
+          <mat-form-field class="form__input">
+            <input matInput type="text" formControlName="lastName"
+                   pattern="[A-Z,А-Я,І]{1}[a-z,а-я]{2,20}"
+                   placeholder="Last name"/>
+          </mat-form-field>
+        <mat-form-field class="form__input">
+          <input matInput formControlName="login" type="text" placeholder="Login">
+        </mat-form-field>
+        <mat-form-field class="form__input">
+          <input matInput placeholder="Email" formControlName="email"
+                 [errorStateMatcher]="matcher">
+          <mat-error
+            *ngIf="registerForm.get('email').hasError('email') && !registerForm.get('email').hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form__input">
+          <mat-select placeholder="Languages" formControlName="languages" multiple>
+            <mat-select-trigger>{{registerForm.get('languages').value ? (registerForm.get('languages').value[0] ? registerForm.get('languages').value[0].name : '') : ''}}
+              <span *ngIf="registerForm.get('languages').value?.length > 1" class="example-additional-selection">
+              (+{{registerForm.get('languages').value.length - 1}} {{registerForm.get('languages').value?.length === 2 ? 'other' : 'others'}}
+                )
+              </span>
+            </mat-select-trigger>
+            <mat-option *ngFor="let item of languages; let i = index" [value]="item">{{item.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form__input area">
+          <textarea formControlName="about" class="form__textarea" maxlength="300" matInput placeholder="About"></textarea>
+        </mat-form-field>
+        <mat-form-field class="form__input">
+          <input matInput formControlName="password" placeholder="Password" [type]="hidePassword ? 'password' : 'text'"
+                 pattern="(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
+          <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="registerForm.get('password').hasError('required')">
+            Password is  <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('password').hasError('pattern')">
+            Password is not valid
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="form__input" style="margin-top: 5px;">
+          <input matInput formControlName="confirmPassword" placeholder="Confirm password"
+                 [type]="hideConfirm ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hideConfirm">
+            <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="registerForm.get('confirmPassword').hasError('required')">
+            Password confirmation is  <strong>required</strong>
+          </mat-error>
+          <mat-error *ngIf="registerForm.get('confirmPassword').hasError('validate')">
+            Password is not the same
+          </mat-error>
+        </mat-form-field>
+        <div class="form__group">
+          <button [disabled]="!registerForm.valid" class="form__button" disabled type="submit">
+            <p style="margin-top: 5px;" *ngIf="!loading">Sign Up</p>
+            <img *ngIf="loading"src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+          </button>
+        </div>
+        <mat-error *ngIf="error" class="error">{{error}}</mat-error>
+      </form>
+    </div>
+  </main>
+</div>

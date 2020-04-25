@@ -1,0 +1,28 @@
+.filler {
+  flex: 1 1 auto;
+}
+
+.btn{
+  outline: none;
+}
+
+.vertical-line{
+  width: 2%;
+  margin: 50% auto;
+  transform: rotate(90deg);
+  border-color: black;
+}
+
+.time {
+  font-size: 16px;
+  margin: 0;
+}
+
+@media (max-width: 620px) {
+  .time {
+    display: none;
+  }
+  .vertical-line{
+    display: none;
+  }
+}

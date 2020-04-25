@@ -1,0 +1,46 @@
+/*----------------------------------------sidebar----------------------------------------*/
+@import "src/app/scss/mixins";
+
+.sidebar {
+  width: 80px;
+  float: left;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.5s ease;
+  @include for-tablet-landscape-up{
+    padding-top: 40px;
+    position: absolute;
+    display: none;
+    transition: all 0.5s ease;
+    &.active{
+      display: flex;
+    }
+  }
+
+}
+
+.sidebar__icons {
+
+  display: flex;
+  cursor: pointer;
+  margin-top: 45%;
+  width: 100%;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  @include for-tablet-landscape-up{
+    //margin-top: 30px;
+  }
+}
+
+.icon{
+  outline: none;
+}
+
+.sidebar__icons__active {
+  border-left: 4px solid #92ffee;
+  box-sizing: border-box;
+}

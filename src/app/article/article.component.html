@@ -1,0 +1,33 @@
+<app-sidebar></app-sidebar>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<main>
+  <div *ngIf="!loading&&!err" class="content selection-off">
+    <div class="head">
+      <mat-chip-list>
+        <mat-chip *ngFor="let t of article.topics">{{t.name}}</mat-chip>
+      </mat-chip-list>
+      <div class="edd">
+        <button *ngIf="isMyProfile" mat-icon-button [matMenuTriggerFor]="editMenu">
+          <mat-icon style="color: white">more_vert</mat-icon>
+        </button>
+        <mat-menu #editMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="onEdit()">Edit</button>
+          <button mat-menu-item (click)="onDelete()">Delete</button>
+        </mat-menu>
+        <p class="post">
+          Posted:  {{article.time_posted | date:'mediumDate'}} {{article.time_posted | date:'shortTime'}}</p>
+      </div>
+    </div>
+    <p class="form__headline">{{article.id_title}}</p>
+
+    <div class="article__content">
+      <div class="form__cont">
+        <p class="form__content" [innerHTML]=content></p>
+        <p class="text" [routerLink]="['/teacher-profile',article.id_author]">
+          Author: {{article.teacher_first_name}} {{article.teacher_last_name}}</p>
+      </div>
+    </div>
+    <!--    <app-comment-section [article_author_id1]="author.id"></app-comment-section>-->
+  </div>
+
+</main>

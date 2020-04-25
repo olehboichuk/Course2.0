@@ -1,0 +1,25 @@
+<app-sidebar></app-sidebar>
+<main>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <div *ngIf="!loading" class="content">
+    <p class="form__headline">MY Subscriptions</p>
+    <div class="cardList">
+      <ng-container *ngFor="let user of users">
+        <mat-card class="cardListItem">
+          <div class="block">
+            <mat-card-subtitle fxLayout="row" class="speakerName">
+              {{user.first_name}} {{user.last_name}}
+            </mat-card-subtitle>
+            <p class="btn" [routerLink]="['/teacher-profile',user.id]">{{user.login}}</p>
+            <star-rating class="user__img--change" [value]="user.rate" checkedcolor="gold" uncheckedcolor="#dddddd"
+                         size="24px"
+                         readonly="true"></star-rating>
+          </div>
+        </mat-card>
+      </ng-container>
+      <div *ngIf="!loading&&users.length<1" class="noSub">
+        <p class="form__headline" style="font-size: 19px; color: #000000;">NO Subscriptions YET</p>
+      </div>
+    </div>
+  </div>
+</main>

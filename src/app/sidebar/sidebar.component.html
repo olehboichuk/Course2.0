@@ -1,0 +1,12 @@
+<div class="hamburger hamburger--squeeze" (click)="hamburger()">
+  <div class="hamburger-box">
+    <div class="hamburger-inner"></div>
+  </div>
+</div>
+<nav class="sidebar">
+  <ng-container *ngFor="let bar of SIDEBAR_DATA">
+    <li *ngIf="bar.role" [title]="bar.alt" [ngClass]="{sidebar__icons:true,sidebar__icons__active:bar.active}">
+      <img class="icon" [src]="bar.active ? bar.activeSRC : bar.noActiveSRC" [routerLink]="bar.routerLink" [alt]="bar.alt"/>
+    </li>
+  </ng-container>
+</nav>

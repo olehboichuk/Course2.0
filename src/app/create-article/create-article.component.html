@@ -1,0 +1,32 @@
+<app-sidebar></app-sidebar>
+<main>
+  <div class="content">
+    <form (ngSubmit)="onSubmit()" [formGroup]="createArticleForm">
+      <p class="form__headline">{{headlineText}}</p>
+      <mat-form-field class="form__input">
+        <input matInput formControlName="title" type="text" placeholder="Title">
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <mat-select placeholder="Topics" formControlName="articleTopics" multiple>
+          <mat-select-trigger> {{createArticleForm.get('articleTopics').value ? (createArticleForm.get('articleTopics').value[0] ? articleTopics[createArticleForm.get('articleTopics').value[0]-1].name : '') : ''}}
+            <span *ngIf="createArticleForm.get('articleTopics').value?.length > 1"
+                  class="example-additional-selection">
+      (+{{createArticleForm.get('articleTopics').value.length - 1}} {{createArticleForm.get('articleTopics').value?.length === 2 ? 'other' : 'others'}}
+              )
+      </span>
+          </mat-select-trigger>
+          <mat-option *ngFor="let item of articleTopics; let i = index" [value]="item.id">{{item.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form__input area">
+          <textarea class="form__textarea" matInput formControlName="content" type="text"
+                    placeholder="Content"></textarea>
+      </mat-form-field>
+      <div class="form__group">
+        <button [disabled]="!createArticleForm.valid" class="form__button" disabled  type="submit"><p *ngIf="!loading">{{btnText}}</p>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

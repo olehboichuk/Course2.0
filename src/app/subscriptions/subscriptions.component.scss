@@ -1,0 +1,122 @@
+@import "src/app/scss/mixins";
+
+$color_2: #1c8adb;
+$font_family_1: "Roboto", sans-serif;
+$font_family_2: "Exo 2", sans-serif;
+/*----------------------------------------header----------------------------------------*/
+.content {
+  border-radius: 4px;
+  margin: 62px 64px 0 148px;
+  height: 75vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.content::-webkit-scrollbar {
+  width: 8px;
+  background: #fdfeff;
+  mix-blend-mode: normal;
+  border-radius: 8px;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: #d7dce9;
+  border-radius: 6px;
+}
+
+.form__headline {
+  font-family: $font_family_2;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 34px;
+  letter-spacing: 0.4px;
+  color: $color_2;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.cardList {
+  width: 60%;
+  align-self: center;
+}
+
+@include for-tablet-landscape-up {
+  .content {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  form {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .cardList {
+    width: 80%;
+    align-self: center;
+  }
+}
+
+@include for-phone-only {
+  form {
+    padding-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .cardList {
+    width: 99%;
+    align-self: center;
+  }
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: -20px 20px 20px 0px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12) !important;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.speakerName {
+  font-family: $font_family_2;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.4px;
+  color: white;
+}
+
+
+.cardListItem {
+  margin-bottom: 20px;
+}
+
+.user__img--change {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.btn {
+  font-family: $font_family_2;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 34px;
+  letter-spacing: 0.4px;
+  outline: none;
+  color: white !important;
+  cursor: pointer;
+
+  &:hover {
+    color: #0f89ff !important;
+  }
+}
+
+.mat-card-subtitle {
+  margin-bottom: 0 !important;
+}

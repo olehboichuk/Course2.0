@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <a style="display: flex; flex-direction: row; align-items: center; outline:none;">
+    <img src="../../assets/img/logo_white.png" style="width: 50%; margin-left: 6px;">
+  </a>
+  <span class="filler"></span>
+  <button *ngIf="!_authService.isLoggedIn()" mat-button style="outline: none;" routerLink="/login">Log in</button>
+  <button *ngIf="!_authService.isLoggedIn()" [matMenuTriggerFor]="signUp" style="outline: none;" mat-button>Sign up</button>
+  <mat-menu #signUp="matMenu">
+    <button class="btn" mat-menu-item routerLink="/register-teacher">As teacher</button>
+    <button class="btn" mat-menu-item routerLink="/register-student">As student</button>
+  </mat-menu>
+  <button *ngIf="_authService.isLoggedIn()" (click)="_authService.logoutUser()" mat-button routerLink="/">Log out</button>
+</mat-toolbar>
