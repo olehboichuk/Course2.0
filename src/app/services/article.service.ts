@@ -5,6 +5,7 @@ import {ArticleModel} from '../models/article.model';
 import {ArticlesModel} from '../models/articles.model';
 import {Router} from '@angular/router';
 import {Uris} from './uris';
+import {LessonModel} from '../models/lesson.model';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class ArticleService {
 
   editArticle(article: ArticleModel) {
     return this.http.put(this.uri.articleURL, article);
+  }
+
+  createLesson(lesson: LessonModel) {
+    return this.http.post(this.uri.lessonURL, lesson);
   }
 }

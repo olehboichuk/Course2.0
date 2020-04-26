@@ -1,4 +1,4 @@
-import {TopicModel} from "./topic.model";
+import {TopicModel} from './topic.model';
 
 export interface ArticlesModel {
   id: number;

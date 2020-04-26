@@ -14,7 +14,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class ArticlesComponent implements OnInit {
 
   articles: ArticlesModel[] = [];
-  isLoading = false;
+  loading = false;
   userId: number;
   deletesArticles: number[];
   deletesArticlesClass: number[];
@@ -25,13 +25,12 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {
     this.deletesArticles = [];
     this.deletesArticlesClass = [];
-    // this.isLoading = true;
+    this.loading = true;
     this.userId = jwt_decode(localStorage.getItem('token')).id;
-    this.articlesService.getArticles()
-      .subscribe(articlesData => {
+    this.articlesService.getArticles().subscribe(articlesData => {
         this.articles = articlesData;
         console.log(this.articles);
-        this.isLoading = false;
+        this.loading = false;
       });
   }
 

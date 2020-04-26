@@ -8,6 +8,7 @@ let jwt = require('jsonwebtoken');
 const sqlLanguages = require('../queryes/language.js');
 const sqlTopics = require('../queryes/topic.js');
 const sqlArticles = require('../queryes/article.js');
+const sqlLessons = require('../queryes/lesson.js');
 
 // const pool = new Pool({
 //     user: 'postgres',
@@ -43,6 +44,9 @@ router.route('/articles')
             if (err) throw err;
             let articles = result.rows;
             let i = 0;
+            if(articles.length===0){
+              res.status(200).json(articles)
+            }
             articles.forEach(el => {
                 pool.query(sqlArticles.get_article_topics, [el.id], (err, topic) => {
                     if (err) return res.status(500).send({message: 'Error on the server.'});
@@ -113,5 +117,23 @@ router.route('/articles/:id')
             res.status(200).json(result.rows)
         });
     });
+
+router.route('/lessons')
+  .post((req, res) => {
+    let token = req.header('x-access-token');
+    let id = jwt.decode(token).id;
+    pool.query(sqlLessons.insert_new_lesson, [id,
+      req.body.id_language,
+      req.body.id_topic,
+      req.body.title,
+      req.body.start_time,
+      req.body.duration_minutes,
+      req.body.min_attendees,
+      req.body.max_attendees,
+      req.body.description], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  });
 
 module.exports = router;

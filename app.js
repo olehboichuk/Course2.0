@@ -1,7 +1,7 @@
 const {Client} = require('pg');
+const csrf = require('csurf');
+const cookieParser = require('cookie-parser');
 let path = require('path');
-let cookieParser = require('cookie-parser');
-
 const express = require('express'),
     app = express(),
     port = parseInt(process.env.PORT, 10) || 3000;
@@ -9,15 +9,15 @@ const express = require('express'),
 let UsersController = require('./backend/handlers/UsersController.js');
 let LanguagesControler = require('./backend/handlers/LanguagesControler.js');
 let AuthController = require('./backend/auth/AuthController.js');
-app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-    res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
-    next();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+  res.header("Access-Control-Allow-Headers", "x-access-token, Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
+app.use(cookieParser());
 app.use('/api', UsersController);
 app.use('/api', AuthController);
 app.use('/api', LanguagesControler);

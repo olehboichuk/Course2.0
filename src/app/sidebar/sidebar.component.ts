@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {Sidebar} from "../models/sidebar";
-import {AuthService} from "../services/auth.service";
-import {UserService} from "../services/user.service";
+import {HttpClient} from '@angular/common/http';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {Sidebar} from '../models/sidebar';
+import {AuthService} from '../services/auth.service';
+import {UserService} from '../services/user.service';
 
 
 @Component({
@@ -27,16 +27,17 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.roles=[];
+    this.roles = [];
     this.isLoading = true;
     this.userService.getUserRole().subscribe(res => {
       this.isLoading = false;
-      for (let i in res) {
+      // tslint:disable-next-line:forin
+      for (const i in res) {
         this.roles[i] = res[i].name;
       }
-      if (this.roles.includes("TEACHER")) {
+      if (this.roles.includes('TEACHER')) {
         this.teacher = true;
-      } else if (this.roles.includes("ADMIN")) {
+      } else if (this.roles.includes('ADMIN')) {
         this.admin = true;
       } else {
         this.student = true;
@@ -117,24 +118,24 @@ export class SidebarComponent implements OnInit {
         {
           activeSRC: '../../assets/img/meetupCreateActive.svg',
           noActiveSRC: '../../assets/img/meetupCreateNoActive.svg',
-          routerLink: '/meetup-create',
-          alt: 'meetup-create',
+          routerLink: '/create-lesson',
+          alt: 'create-lesson',
           role: this.teacher,
           active: false
         },
         {
           activeSRC: '../../assets/img/meetupListActive.svg',
           noActiveSRC: '../../assets/img/meetupListNoActive.svg',
-          routerLink: '/meetup-list',
-          alt: 'meetup-list',
+          routerLink: '/lesson-list',
+          alt: 'lesson-list',
           role: this.teacher,
           active: false
         },
         {
           activeSRC: '../../assets/img/meetupListActive.svg',
           noActiveSRC: '../../assets/img/meetupListNoActive.svg',
-          routerLink: '/meetup-list',
-          alt: 'meetup-list',
+          routerLink: '/lesson-list',
+          alt: 'lesson-list',
           role: this.student,
           active: false
         },
@@ -175,7 +176,7 @@ export class SidebarComponent implements OnInit {
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (!(paramMap.has('speakerId') || paramMap.has('listenerId'))) {
           this.href = this.router.url;
-          for (let bar in this.SIDEBAR_DATA) {
+          for (const bar in this.SIDEBAR_DATA) {
             if (this.href.includes(this.SIDEBAR_DATA[bar].routerLink)) {
               this.SIDEBAR_DATA[bar].active = true;
             }
@@ -186,9 +187,9 @@ export class SidebarComponent implements OnInit {
   }
 
   hamburger() {
-    const hamburger = document.querySelector(".hamburger");
-    const bar = document.querySelector(".sidebar");
-    bar.classList.toggle("active");
-    hamburger.classList.toggle("is-active");
+    const hamburger = document.querySelector('.hamburger');
+    const bar = document.querySelector('.sidebar');
+    bar.classList.toggle('active');
+    hamburger.classList.toggle('is-active');
   }
 }

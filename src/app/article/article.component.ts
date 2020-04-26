@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from "../services/user.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {ArticleService} from "../services/article.service";
-import {ArticlesModel} from "../models/articles.model";
+import {UserService} from '../services/user.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {ArticleService} from '../services/article.service';
+import {ArticlesModel} from '../models/articles.model';
 import * as jwt_decode from 'jwt-decode';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {HttpClient} from "@angular/common/http";
-import {DomSanitizer} from "@angular/platform-browser";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {HttpClient} from '@angular/common/http';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article',
@@ -23,11 +23,13 @@ export class ArticleComponent implements OnInit {
   public userId: number;
   public content: any;
 
-  constructor(private sanitizer: DomSanitizer,private snackBar: MatSnackBar, private router: Router, public articlesService: ArticleService, public userService: UserService, public route: ActivatedRoute) {
+  constructor(private sanitizer: DomSanitizer, private snackBar: MatSnackBar,
+              private router: Router, public articlesService: ArticleService,
+              public userService: UserService, public route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.isMyProfile=false;
+    this.isMyProfile = false;
     this.loading = true;
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('articleId')) {
@@ -37,15 +39,16 @@ export class ArticleComponent implements OnInit {
           this.article = res[0];
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.article.contents);
           this.userId = jwt_decode(localStorage.getItem('token')).id;
-          if (this.article.id_author==this.userId) {
-            this.isMyProfile=true;
+          // tslint:disable-next-line:triple-equals
+          if (this.article.id_author == this.userId) {
+            this.isMyProfile = true;
           }
           this.loading = false;
 
-        },error => {
+        }, error => {
           this.loading = false;
           this.err = true;
-          this.snackBar.open(error.error.message,'',{
+          this.snackBar.open(error.error.message, '', {
             duration: 20000,
           });
         });
@@ -54,7 +57,7 @@ export class ArticleComponent implements OnInit {
   }
 
   onEdit() {
-    this.router.navigate(['/create-article',this.article.id]);
+    this.router.navigate(['/edit-article', this.article.id]);
   }
 
   onDelete() {

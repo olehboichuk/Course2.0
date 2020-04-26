@@ -1,13 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserModel} from "../models/user.model";
-import {UserService} from "../services/user.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
-import {LanguagesList} from "../models/languagesList";
-import {DialogComponent} from "../dialog/dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserModel} from '../models/user.model';
+import {UserService} from '../services/user.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {LanguagesList} from '../models/languagesList';
+import {DialogComponent} from '../dialog/dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 import * as jwt_decode from 'jwt-decode';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-profile-teacher',
@@ -30,7 +30,11 @@ export class ProfileTeacherComponent implements OnInit {
   public subscribeToIdsList: number[] = [];
   public subscribeText: string;
 
-  constructor(public dialog: MatDialog, private router: Router, private formBuilder: FormBuilder, private userService: UserService, public route: ActivatedRoute) {
+  constructor(public dialog: MatDialog,
+              private router: Router,
+              private formBuilder: FormBuilder,
+              private userService: UserService,
+              public route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -54,7 +58,7 @@ export class ProfileTeacherComponent implements OnInit {
           this.user = res[0];
           this.star = this.user.rate;
           this.userService.getUserLanguagesById(+this.userId).subscribe(lang => {
-            for (let i in lang) {
+            for (const i in lang) {
               this.langListNames += lang[i].name + ', ';
               this.langListIds[i] = lang[i].id;
             }
@@ -63,11 +67,11 @@ export class ProfileTeacherComponent implements OnInit {
               allLan => {
                 this.languages = allLan;
                 this.userService.getTeacherSubscribersById(+this.userId).subscribe(sub => {
-                  for (let i in sub) {
+                  for (const i in sub) {
                     this.subscribeToIdsList[i] = sub[i].id;
                   }
-                  let userID = jwt_decode(localStorage.getItem('token')).id;
-                  if(this.userId==userID){
+                  const userID = jwt_decode(localStorage.getItem('token')).id;
+                  if (this.userId === userID) {
                     this.router.navigate(['/teacher-profile']);
                   }
                   if (this.subscribeToIdsList.includes(userID)) {
@@ -80,7 +84,7 @@ export class ProfileTeacherComponent implements OnInit {
                   this.loading = false;
                 });
               });
-          })
+          });
         });
       } else {
         this.isMyProfile = true;
@@ -88,7 +92,7 @@ export class ProfileTeacherComponent implements OnInit {
           this.user = res[0];
           this.star = this.user.rate;
           this.userService.getUserLanguages().subscribe(lang => {
-            for (let i in lang) {
+            for (const i in lang) {
               this.langListNames += lang[i].name + ', ';
               this.langListIds[i] = lang[i].id;
             }
@@ -98,7 +102,7 @@ export class ProfileTeacherComponent implements OnInit {
                 this.languages = allLan;
                 this.loading = false;
               });
-          })
+          });
         });
       }
     });
@@ -106,11 +110,11 @@ export class ProfileTeacherComponent implements OnInit {
 
   onEdit() {
     this.edited = false;
-    this.changeForm.controls['first_name'].setValue(this.user.first_name);
-    this.changeForm.controls['last_name'].setValue(this.user.last_name);
-    this.changeForm.controls['email'].setValue(this.user.email);
-    this.changeForm.controls['about'].setValue(this.user.about);
-    this.changeForm.controls['languages'].setValue(this.langListIds);
+    this.changeForm.controls.first_name.setValue(this.user.first_name);
+    this.changeForm.controls.last_name.setValue(this.user.last_name);
+    this.changeForm.controls.email.setValue(this.user.email);
+    this.changeForm.controls.about.setValue(this.user.about);
+    this.changeForm.controls.languages.setValue(this.langListIds);
   }
 
   onCancel() {
@@ -118,14 +122,14 @@ export class ProfileTeacherComponent implements OnInit {
   }
 
   onSave() {
-    const user = <UserModel>{
+    const user = {
       first_name: this.changeForm.get('first_name').value,
       last_name: this.changeForm.get('last_name').value,
       email: this.changeForm.get('email').value,
       about: this.changeForm.get('about').value,
       languageIds: this.changeForm.get('languages').value,
       id: this.user.id
-    }
+    } as UserModel;
     this.loading = true;
     this.userService.updateUser(user).subscribe(res => {
       this.ngOnInit();

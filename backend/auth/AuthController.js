@@ -1,6 +1,7 @@
 let express = require('express');
-let cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 let router = express.Router();
+
 let bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
@@ -10,6 +11,7 @@ let jwt = require('jsonwebtoken');
 let bcrypt = require('bcryptjs');
 const sql = require('../queryes/user.js');
 let config = require('../config.js');
+
 // const pool = new Pool({
 //     user: 'postgres',
 //     host: 'localhost',

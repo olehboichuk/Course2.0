@@ -1,0 +1,75 @@
+<app-sidebar></app-sidebar>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<main>
+  <div *ngIf="!loading" class="content">
+    <form (ngSubmit)="onSubmit()" [formGroup]="createLessonForm">
+      <p class="form__headline">{{headlineText}}</p>
+      <mat-form-field class="form__input title">
+        <input matInput formControlName="title" type="text" placeholder="Title">
+      </mat-form-field>
+      <div class="top-line">
+        <mat-form-field class="form__input" style="margin-right: 4%;" appearance="outline">
+          <mat-select placeholder="Language" formControlName="id_language">
+            <mat-option *ngFor="let lang of userLanguages" [value]="lang.id">{{lang.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form__input" style="margin-right: 4%;" appearance="outline">
+          <mat-select placeholder="Topic" formControlName="id_topic">
+            <mat-option *ngFor="let topic of topics" [value]="topic.id">{{topic.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="form__input" style="margin-right: 4%;" appearance="outline">
+          <input matInput [min]="minDate"
+                 [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div>
+          <timepicker [minuteStep]="15" formControlName="time"></timepicker>
+          <mat-error *ngIf="createLessonForm.hasError('minutesValidator')">
+            Minutes should be "00","15","30","45
+          </mat-error>
+        </div>
+      </div>
+        <mat-form-field class="form__input" style="text-align: center;" appearance="outline">
+          <mat-select
+            placeholder="Duration"
+            formControlName="duration_minutes">
+            <mat-option style="text-align: center;"
+              *ngFor="let duration of durations"
+              [value]="duration">
+              {{duration.title}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="createLessonForm.controls['duration_minutes'].errors?.required">Please choose a duration.</mat-error>
+        </mat-form-field>
+      <div class="top-line">
+        <mat-form-field class="form__input" style="margin-right: 4%;" appearance="outline">
+          <input matInput
+                 type="number"
+                 min="1"
+                 formControlName="min_attendees" placeholder="Min attendees"/>
+          <mat-error *ngIf="createLessonForm.controls['min_attendees'].errors?.required">Amount is required.</mat-error>
+        </mat-form-field>
+        <mat-form-field class="form__input" appearance="outline">
+          <input matInput
+                 type="number"
+                 formControlName="max_attendees" placeholder="Max attendees"[errorStateMatcher]="errorMatcher">
+          <mat-error *ngIf="createLessonForm.hasError('amountAttendeesInvalid')">
+            Maximum amount of attendees invalid
+          </mat-error>
+          <mat-error *ngIf="createLessonForm.controls['max_attendees'].errors?.required">Amount is required.</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="form__input area">
+          <textarea class="form__textarea" matInput formControlName="description" type="text"
+                    placeholder="Description"></textarea>
+      </mat-form-field>
+      <div class="form__group">
+        <button [disabled]="!createLessonForm.valid" class="form__button" disabled  type="submit"><p *ngIf="!loading">{{btnText}}</p>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </button>
+      </div>
+    </form>
+  </div>
+</main>

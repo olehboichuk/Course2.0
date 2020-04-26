@@ -92,6 +92,7 @@ router.route('/user/languages/:id')
       res.status(200).json(result.rows)
     });
   });
+
 router.route('/user/subscriptions')
   .get((req, res) => {
     let token = req.header('x-access-token');

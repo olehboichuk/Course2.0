@@ -1,12 +1,12 @@
 <app-sidebar></app-sidebar>
-<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-spinner *ngIf="loading"></mat-spinner>
 <main>
-  <div *ngIf="!isLoading" class="content">
+  <div *ngIf="!loading" class="content">
     <p class="form__headline">Articles</p>
     <div class="cardList selection-off" *ngIf="articles.length > 0">
       <ng-container *ngFor="let article of articles">
         <mat-card *ngIf="hide(article.id)" [ngClass]="{'cardListItem':true, 'animated zoomOutUp infinite':deletesArticlesClass.includes(article.id)}">
-          <mat-card-title fxLayout="row">
+          <mat-card-title fxLayout="row" style="width: 90%;">
             {{article.id_title}}
           </mat-card-title>
           <mat-card-subtitle [routerLink]="['/teacher-profile',article.id_author]" fxLayout="row" class="authorName">
@@ -31,6 +31,6 @@
         </mat-card>
       </ng-container>
     </div>
-    <p class="info-text mat-body-2 form__headline" style="font-size: 19px; color: #000000;" *ngIf="!isLoading&&articles.length <= 0 ">No Articles Yet</p>
+    <p class="info-text mat-body-2 form__headline" style="font-size: 19px; color: #000000;" *ngIf="!loading&&articles.length <= 0 ">No Articles Yet</p>
   </div>
 </main>

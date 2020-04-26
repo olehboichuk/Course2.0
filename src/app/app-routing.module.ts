@@ -12,6 +12,7 @@ import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
 import {CreateArticleComponent} from './create-article/create-article.component';
 import {ArticlesComponent} from './articles/articles.component';
 import {ArticleComponent} from './article/article.component';
+import {CreateLessonComponent} from './create-lesson/create-lesson.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,9 @@ const routes: Routes = [
   {path: 'student-profile', component: ProfileStudentComponent},
   {path: 'subscriptions', component: SubscriptionsComponent},
   {path: 'create-article', component: CreateArticleComponent},
-  {path: 'create-article/:articleId', component: CreateArticleComponent},
+  {path: 'edit-article/:articleId', component: CreateArticleComponent},
+  {path: 'create-lesson', component: CreateLessonComponent},
+  {path: 'edit-lesson/:lessonId', component: CreateLessonComponent},
   {path: 'article-list', component: ArticlesComponent},
   {path: 'article/:articleId', component: ArticleComponent},
   {path: 'verify', component: VerificationComponent},

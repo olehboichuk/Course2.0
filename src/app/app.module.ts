@@ -38,6 +38,14 @@ import {ArticleComponent} from './article/article.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 import {CookieModule, CookieService} from 'ngx-cookie';
 import {Uris} from './services/uris';
+import { LessonsComponent } from './lessons/lessons.component';
+import { CreateLessonComponent } from './create-lesson/create-lesson.component';
+import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {TimepickerActions, TimepickerConfig, TimepickerModule} from 'ngx-bootstrap/timepicker';
+import {BsDatepickerConfig, BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {DatePipe} from '@angular/common';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +64,9 @@ import {Uris} from './services/uris';
     SubscriptionsComponent,
     CreateArticleComponent,
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    LessonsComponent,
+    CreateLessonComponent
   ],
   imports: [
     BrowserModule,
@@ -79,8 +89,15 @@ import {Uris} from './services/uris';
     MatChipsModule,
     MatSnackBarModule,
     CookieModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+    MatDatepickerModule,
+    TimepickerModule,
+    MatNativeDateModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
-  providers: [{
+  providers: [TimepickerConfig, TimepickerActions,
+    BsDatepickerConfig, DatePipe, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true,
