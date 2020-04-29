@@ -42,7 +42,7 @@ import { LessonsComponent } from './lessons/lessons.component';
 import { CreateLessonComponent } from './create-lesson/create-lesson.component';
 import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import {TimepickerActions, TimepickerConfig, TimepickerModule} from 'ngx-bootstrap/timepicker';
-import {BsDatepickerConfig, BsDatepickerModule} from 'ngx-bootstrap/datepicker';
+import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {DatePipe} from '@angular/common';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
@@ -96,8 +96,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
   ],
-  providers: [TimepickerConfig, TimepickerActions,
-    BsDatepickerConfig, DatePipe, {
+  providers: [TimepickerConfig, TimepickerActions, DatePipe, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true,
