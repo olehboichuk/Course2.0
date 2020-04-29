@@ -10,7 +10,7 @@
       <mat-form-field class="form__input">
         <mat-select placeholder="Topics" formControlName="articleTopics" multiple>
           <mat-select-trigger> {{createArticleForm.get('articleTopics').value ? (createArticleForm.get('articleTopics').value[0] ? articleTopics[createArticleForm.get('articleTopics').value[0]-1].name : '') : ''}}
-            <span *ngIf="createArticleForm.get('articleTopics').value?.length > 1"
+            <span *ngIf="createArticleForm.get('articleTopics').value.length > 1"
                   class="example-additional-selection">
       (+{{createArticleForm.get('articleTopics').value.length - 1}} {{createArticleForm.get('articleTopics').value?.length === 2 ? 'other' : 'others'}}
               )

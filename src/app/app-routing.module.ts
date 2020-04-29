@@ -13,6 +13,8 @@ import {CreateArticleComponent} from './create-article/create-article.component'
 import {ArticlesComponent} from './articles/articles.component';
 import {ArticleComponent} from './article/article.component';
 import {CreateLessonComponent} from './create-lesson/create-lesson.component';
+import {LessonsComponent} from './lessons/lessons.component';
+import {LessonComponent} from './lesson/lesson.component';
 
 
 const routes: Routes = [
@@ -27,11 +29,13 @@ const routes: Routes = [
   {path: 'student-profile', component: ProfileStudentComponent},
   {path: 'subscriptions', component: SubscriptionsComponent},
   {path: 'create-article', component: CreateArticleComponent},
-  {path: 'edit-article/:articleId', component: CreateArticleComponent},
   {path: 'create-lesson', component: CreateLessonComponent},
+  {path: 'edit-article/:articleId', component: CreateArticleComponent},
   {path: 'edit-lesson/:lessonId', component: CreateLessonComponent},
+  {path: 'lesson-list', component: LessonsComponent},
   {path: 'article-list', component: ArticlesComponent},
   {path: 'article/:articleId', component: ArticleComponent},
+  {path: 'lesson/:lessonId', component: LessonComponent},
   {path: 'verify', component: VerificationComponent},
 ];
 

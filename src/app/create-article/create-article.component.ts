@@ -5,8 +5,8 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {ArticleService} from '../services/article.service';
 import {ArticleModel} from '../models/article.model';
-import {UserService} from '../services/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {LessonService} from '../services/lesson.service';
 
 @Component({
   selector: 'app-create-article',
@@ -27,7 +27,7 @@ export class CreateArticleComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,
               public articleService: ArticleService,
-              public articlesService: ArticleService,
+              public lessonService: LessonService,
               private httpClient: HttpClient,
               private formBuilder: FormBuilder,
               private router: Router,
@@ -42,6 +42,7 @@ export class CreateArticleComponent implements OnInit {
     this.createArticleForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.minLength(2)]],
       content: ['', [Validators.required, Validators.minLength(10)]],
+      articleTopics: ['', Validators.required],
     });
     this.articleService.getTopics()
       .subscribe(
@@ -58,7 +59,7 @@ export class CreateArticleComponent implements OnInit {
         this.topicsListIds = [];
         this.isEdit = true;
         this.articleId = paramMap.get('articleId');
-        this.articlesService.getArticleById(+this.articleId).subscribe(res => {
+        this.articleService.getArticleById(+this.articleId).subscribe(res => {
           this.createArticleForm.controls.title.setValue(res[0].id_title);
           this.createArticleForm.controls.content.setValue(res[0].contents);
           for (const i in res[0].topics) {

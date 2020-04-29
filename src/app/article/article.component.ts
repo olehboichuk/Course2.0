@@ -5,7 +5,6 @@ import {ArticleService} from '../services/article.service';
 import {ArticlesModel} from '../models/articles.model';
 import * as jwt_decode from 'jwt-decode';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {HttpClient} from '@angular/common/http';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -39,7 +38,6 @@ export class ArticleComponent implements OnInit {
           this.article = res[0];
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.article.contents);
           this.userId = jwt_decode(localStorage.getItem('token')).id;
-          // tslint:disable-next-line:triple-equals
           if (this.article.id_author == this.userId) {
             this.isMyProfile = true;
           }

@@ -26,9 +26,6 @@
         </mat-form-field>
         <div>
           <timepicker [minuteStep]="15" formControlName="time"></timepicker>
-          <mat-error *ngIf="createLessonForm.hasError('minutesValidator')">
-            Minutes should be "00","15","30","45
-          </mat-error>
         </div>
       </div>
         <mat-form-field class="form__input" style="text-align: center;" appearance="outline">

@@ -1,1 +1,32 @@
-<p>lessons works!</p>
+<app-sidebar></app-sidebar>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<main>
+  <div *ngIf="!loading" class="content">
+    <p class="form__headline">Lessons</p>
+    <div class="cardList selection-off" *ngIf="lessons.length > 0">
+      <ng-container *ngFor="let lesson of lessons">
+        <mat-card [ngClass]="{'cardListItem':true}">
+          <mat-card-title fxLayout="row" style="width: 90%;">
+            {{lesson.title}}
+          </mat-card-title>
+          <mat-card-subtitle [routerLink]="['/teacher-profile',lesson.id_teacher]" fxLayout="row" class="authorName">
+            {{lesson.teacher_first_name}} {{lesson.teacher_last_name}}
+          </mat-card-subtitle>
+          <mat-card-subtitle fxLayout="row">
+            {{lesson.start_time | date:'mediumDate'}} {{lesson.start_time | date:'shortTime'}}
+          </mat-card-subtitle>
+          <div fxLayout="row" style="max-width: 91%;">
+            <mat-chip-list>
+              <mat-chip>{{lesson.topic_name}}</mat-chip>
+            </mat-chip-list>
+          </div>
+          <div class="wrap">
+            <p>{{lesson.users_join}}/{{lesson.max_attendees}}</p>
+          </div>
+          <p [routerLink]="['/lesson',lesson.id]" class="text">more</p>
+        </mat-card>
+      </ng-container>
+    </div>
+    <p class="info-text mat-body-2 form__headline" style="font-size: 19px; color: #000000;" *ngIf="!loading&&lessons.length <= 0 ">No LESSONS Yet</p>
+  </div>
+</main>

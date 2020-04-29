@@ -45,6 +45,7 @@ import {TimepickerActions, TimepickerConfig, TimepickerModule} from 'ngx-bootstr
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {DatePipe} from '@angular/common';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import { LessonComponent } from './lesson/lesson.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
     ArticlesComponent,
     ArticleComponent,
     LessonsComponent,
-    CreateLessonComponent
+    CreateLessonComponent,
+    LessonComponent
   ],
   imports: [
     BrowserModule,

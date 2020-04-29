@@ -40,7 +40,4 @@ export class ArticleService {
     return this.http.put(this.uri.articleURL, article);
   }
 
-  createLesson(lesson: LessonModel) {
-    return this.http.post(this.uri.lessonURL, lesson);
-  }
 }

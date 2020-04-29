@@ -1,0 +1,53 @@
+<app-sidebar></app-sidebar>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<main>
+  <div *ngIf="!loading" class="content">
+    <div class="head">
+      <div class="edd">
+        <button *ngIf="isMyProfile" mat-icon-button [matMenuTriggerFor]="editMenu">
+          <mat-icon style="color: white">more_vert</mat-icon>
+        </button>
+        <mat-menu #editMenu="matMenu" xPosition="before">
+          <button mat-menu-item (click)="onEdit()">Edit</button>
+          <button mat-menu-item (click)="onTerminate()">Terminate</button>
+        </mat-menu>
+      </div>
+    </div>
+    <p class="form__headline">{{lesson.title}}</p>
+    <div class="lesson__content">
+      <div class="form__user">
+        <div class="player__item">
+          <p class="player--text">Starts:</p>
+          <p class="player__name">{{time | date:'mediumDate'}} {{time | date:'shortTime'}}</p>
+        </div>
+        <div class="player__item">
+          <p class="player--text">Topic:</p>
+          <p class="player__name">{{lesson.topic_name}}</p>
+        </div>
+        <div class="player__item">
+          <p class="player--text">Language:</p>
+          <p class="player__name">{{lesson.language_name}}</p>
+        </div>
+        <div class="player__item">
+          <p class="player--text">Users join:</p>
+          <p class="player__name">{{joinedCount}}/{{lesson.max_attendees}} (min: {{lesson.min_attendees}})</p>
+        </div>
+        <div class="player__item">
+          <p class="player--text">Duration:</p>
+          <p class="player__name">{{lesson.duration_minutes / 60}} h.</p>
+        </div>
+      </div>
+      <div class="form__user">
+        <div class="player__item">
+          <p class="player--text">Description:</p>
+          <p class="player__name">{{lesson.description}}</p>
+        </div>
+      </div>
+      <div class="footer">
+        <p class="text" [routerLink]="['/teacher-profile',lesson.id_teacher]">
+          Teacher: {{lesson.teacher_first_name}} {{lesson.teacher_last_name}}</p>
+        <p [ngClass]="{'selection-off':true, 'join':(!joined&&!joins), 'leave':(joined&&!joins), 'load':joins}" *ngIf="(!isMyProfile)&&(!fullUsers)" (click)="onJoin()">{{joined ? 'LEAVE' : 'JOIN'}}</p>
+      </div>
+    </div>
+  </div>
+</main>
