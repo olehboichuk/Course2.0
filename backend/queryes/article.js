@@ -25,13 +25,7 @@ let find_all_articles_by_pages = 'SELECT a.id, a.id_author, a.id_title, a.conten
     'LIMIT $1 ' +
     'OFFSET $2';
 let find_all_articles_count = 'SELECT COUNT(*) FROM articles';
-let find_article_commentaries = 'SELECT c.id, c.id_author, c.id_article, c.contents, c.time_posted, ' +
-    'u.login AS author_login ' +
-    'FROM comments c INNER JOIN users u on c.id_author = u.id ' +
-    'WHERE c.id_article = $1 ' +
-    'ORDER BY c.time_posted DESC';
-let insert_new_commentary = 'INSERT INTO comments (id_author, id_article, contents, time_posted) VALUES ($1, $2, $3, $4)';
-let remove_commentary = 'DELETE FROM comments WHERE id = $1';
+
 
 module.exports = {
     insert_new_article,
@@ -43,8 +37,5 @@ module.exports = {
     get_article_topics,
     find_all_articles,
     find_all_articles_by_pages,
-    find_all_articles_count,
-    find_article_commentaries,
-    insert_new_commentary,
-    remove_commentary
+    find_all_articles_count
 }

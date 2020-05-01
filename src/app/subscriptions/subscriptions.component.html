@@ -7,9 +7,7 @@
       <ng-container *ngFor="let user of users">
         <mat-card class="cardListItem">
           <div class="block">
-            <mat-card-subtitle fxLayout="row" class="speakerName">
-              {{user.first_name}} {{user.last_name}}
-            </mat-card-subtitle>
+            <p class="teacherName">{{user.first_name}} {{user.last_name}}</p>
             <p class="btn" [routerLink]="['/teacher-profile',user.id]">{{user.login}}</p>
             <star-rating class="user__img--change" [value]="user.rate" checkedcolor="gold" uncheckedcolor="#dddddd"
                          size="24px"

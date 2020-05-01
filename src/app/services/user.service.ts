@@ -22,6 +22,10 @@ export class UserService {
     return this.http.get(this.uri.userRoleURL);
   }
 
+  getUserRoleById(id: number) {
+    return this.http.get(this.uri.userRoleURL+'/'+id);
+  }
+
   updateUser(user: UserModel) {
     return this.http.put<UserModel>(this.uri.userURL, user);
   }
@@ -46,12 +50,10 @@ export class UserService {
     return this.http.get<UserModel[]>(this.uri.userSubscriptionsURL);
   }
 
-  // tslint:disable-next-line:variable-name
   getUserById(number: number) {
     return this.http.get<UserModel>(this.uri.userURL + '/' + number);
   }
 
-  // tslint:disable-next-line:variable-name
   getTeacherSubscribersById(number: number) {
     return this.http.get(this.uri.userSubscriptionsURL + '/' + number);
   }

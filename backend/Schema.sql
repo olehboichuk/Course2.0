@@ -144,11 +144,11 @@ CREATE TABLE comments
 (
     id          BIGSERIAL NOT NULL,
     id_author   BIGINT    NOT NULL,
-    id_article  BIGINT    NOT NULL,
+    id_lesson  BIGINT    NOT NULL,
     contents    TEXT      NOT NULL,
     time_posted TIMESTAMP NOT NULL,
     FOREIGN KEY (id_author) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_article) REFERENCES articles (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_lesson) REFERENCES lessons (id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (id)
 );
 

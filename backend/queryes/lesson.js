@@ -68,6 +68,13 @@ let get_teacher_rate_from_lesson = 'SELECT teacher_rate' +
   '                               WHERE id_lesson = $1 and id_user = $2';
 let set_cancelled_to_lessons = 'update lessons set id_state = 4 where (id_state = 2 OR id_state = 3) AND (start_time < $1)';
 let set_terminated_to_lessons = 'update lessons set id_state = 6 where (id_state = 2 OR id_state = 3) AND id = $1';
+let find_lesson_commentaries = 'SELECT c.id, c.id_author, c.id_lesson, c.contents, c.time_posted, ' +
+  'u.login AS author_login ' +
+  'FROM comments c INNER JOIN users u on c.id_author = u.id ' +
+  'WHERE c.id_lesson = $1 ' +
+  'ORDER BY c.time_posted DESC';
+let insert_new_commentary = 'INSERT INTO comments (id_author, id_lesson, contents, time_posted) VALUES ($1, $2, $3, $4)';
+let remove_commentary = 'DELETE FROM comments WHERE id = $1';
 
 module.exports = {
   insert_new_lesson,
@@ -92,4 +99,7 @@ module.exports = {
   get_teacher_rate_from_lesson,
   set_cancelled_to_lessons,
   set_terminated_to_lessons,
+  find_lesson_commentaries,
+  insert_new_commentary,
+  remove_commentary
 }

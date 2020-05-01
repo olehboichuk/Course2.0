@@ -28,8 +28,8 @@ export class LessonComponent implements OnInit {
   public fullUsers = false;
 
   constructor(private snackBar: MatSnackBar,
-              private router: Router, public lessonService: LessonService,
-              public userService: UserService, public route: ActivatedRoute) {
+              private router: Router, private lessonService: LessonService,
+              private userService: UserService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -41,7 +41,6 @@ export class LessonComponent implements OnInit {
       if (paramMap.has('lessonId')) {
         this.lessonId = paramMap.get('lessonId');
         this.lessonService.getLessonById(+this.lessonId).subscribe(lesson => {
-          console.log(lesson);
           this.lesson = lesson;
           this.time = new Date(moment(this.lesson.start_time).add('3','hour'));
           this.joinedCount = lesson.users_join;

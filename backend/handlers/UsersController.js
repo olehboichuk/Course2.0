@@ -76,6 +76,14 @@ router.route('/user/role')
     });
   });
 
+router.route('/user/role/:id')
+  .get((req, res) => {
+    pool.query(sql.find_user_roles, [req.params.id], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  });
+
 router.route('/user/languages')
   .get((req, res) => {
     let token = req.header('x-access-token');

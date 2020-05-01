@@ -13,8 +13,8 @@ $font_family_2: "Exo 2", sans-serif;
   margin: 10px 10px 0 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  height: 50vh;
-  max-height: 75vh;
+  height: 80vh;
+  max-height: 85vh;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -203,4 +203,8 @@ $font_family_2: "Exo 2", sans-serif;
   display: flex;
   width: 70%;
   justify-content: space-evenly;
+}
+.comments{
+  display: flex;
+  justify-content: center;
 }

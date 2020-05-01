@@ -134,6 +134,27 @@ router.route('/lessons/:id')
     })
   });
 
+
+router.route('/comments/:id')
+  .get((req, res) => {
+    pool.query(sqlLessons.find_lesson_commentaries, [req.params.id], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  })
+  .post((req, res) => {
+    pool.query(sqlLessons.insert_new_commentary, [req.body.id_author, req.params.id, req.body.contents, req.body.time_posted], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  })
+  .delete((req, res) => {
+    pool.query(sqlLessons.remove_commentary, [req.params.id], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  });
+
 router.route('/lessons')
   .get((req, res) => {
     pool.query(sqlLessons.get_all_lessons, (err, result) => {
@@ -190,10 +211,11 @@ router.route('/lessons/join/:id')
     if (err) throw err;
     res.status(200).json(result.rows)
   });
-})
+});
+
 
 let minutes = 15, the_interval = minutes * 60 * 1000;
-setInterval(function() {
+setInterval(function () {
   pool.query(sqlLessons.set_cancelled_to_lessons, [new Date().toUTCString()], (err, result) => {
     if (err) throw err;
   });

@@ -16,6 +16,7 @@ export class Uris {
   public joinURL = '/api/lessons/join/';
   public lessonsURL = '/api/user/lessons/teacher';
   public lessonsStudentURL = '/api/user/lessons/student';
+  public commentsURL = '/api/comments';
 
   // public userURL = 'http://localhost:3000/api/user/profile';
   // public userSubscriptionsURL = 'http://localhost:3000/api/user/subscriptions';
@@ -34,4 +35,5 @@ export class Uris {
   // public logInURL = 'http://localhost:3000/api/login';
   // public registerURL = 'http://localhost:3000/api/register';
   // public getLanguagesURL = 'http://localhost:3000/api/languages';
+  // public commentsURL = 'http://localhost:3000/api/comments';
 }

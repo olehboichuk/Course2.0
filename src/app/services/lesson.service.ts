@@ -2,6 +2,10 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Uris} from './uris';
 import {LessonModel} from '../models/lesson.model';
+import {CommentModel} from '../models/comment.model';
+import {map} from 'rxjs/operators';
+// @ts-ignore
+import { Response} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +28,7 @@ export class LessonService {
     return this.http.get<LessonModel[]>(this.uri.lessonURL);
   }
 
- terminateLesson(id: number) {
+  terminateLesson(id: number) {
     return this.http.delete(this.uri.lessonURL + '/' + id);
   }
 
@@ -40,5 +44,17 @@ export class LessonService {
     return this.http.delete(this.uri.joinURL + id);
   }
 
+
+  getAllComments(id: number) {
+    return this.http.get<CommentModel[]>(this.uri.commentsURL + '/' + id);
+  }
+
+  deleteComment(id: number) {
+    return this.http.delete(this.uri.commentsURL + '/' + id);
+  }
+
+  addComment(comment: CommentModel) {
+    return this.http.post<CommentModel>(this.uri.commentsURL+ '/' + comment.id_lesson, comment).pipe(map((response: Response) => response) );
+  }
 
 }

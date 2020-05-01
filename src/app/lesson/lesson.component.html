@@ -49,5 +49,6 @@
         <p [ngClass]="{'selection-off':true, 'join':(!joined&&!joins), 'leave':(joined&&!joins), 'load':joins}" *ngIf="(!isMyProfile)&&(!fullUsers)" (click)="onJoin()">{{joined ? 'LEAVE' : 'JOIN'}}</p>
       </div>
     </div>
+    <app-comments-section class="comments" *ngIf="joined||isMyProfile"></app-comments-section>
   </div>
 </main>

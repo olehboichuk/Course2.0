@@ -1,0 +1,44 @@
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
+  type="text/css"
+  rel="stylesheet"
+/>
+<div class="content">
+  <p class="header">DISCUSSION!</p>
+  <div class="input">
+    <form class="input_msg_write" (ngSubmit)="addComment()">
+      <input
+        type="text"
+        class="write_msg"
+        placeholder="Type a message"
+        name="newComment"
+        [(ngModel)]="newComment"
+      />
+      <button class="msg_send_btn" type="submit">
+        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+      </button>
+    </form>
+  </div>
+  <div class="comments">
+    <mat-list class="cardList">
+      <div class="item" *ngFor="let comment of comments">
+        <div class="comment-card">
+          <div class="meta">
+            <div class="top">
+              <a class="link_person" (click)="redirectToProfile(comment.id_author)">{{comment.author_login}}</a>
+              <span class="time">{{comment.time_posted | date: 'dd/MM/yy HH:mm:ss'}}</span>
+            </div>
+            <div *ngIf="comment.id_author===userId" >
+              <input type="checkbox" id="toggle{{comment.id}}" (click)="deleteMyComment(comment)"/>
+              <label [ngClass]="{'button':true,'check':true}" for="toggle{{comment.id}}">X
+              </label>
+            </div>
+          </div>
+          <div class="comment_text-wrp">
+            <p class="comment_text">{{comment.contents}}</p>
+          </div>
+        </div>
+      </div>
+    </mat-list>
+  </div>
+</div>
