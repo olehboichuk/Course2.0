@@ -63,4 +63,20 @@ export class UserService {
   unsubscribeTo(id: number) {
     return this.http.delete(this.uri.subscribeURL + id + '/subscribe');
   }
+
+  getTeacherLessons() {
+    return this.http.get(this.uri.lessonsURL);
+  }
+
+  getTeacherLessonsById(id: number) {
+    return this.http.get(this.uri.lessonsURL + '/' + id);
+  }
+
+  getStudentLessons() {
+    return this.http.get(this.uri.lessonsStudentURL);
+  }
+
+  getStudentLessonsById(id: number) {
+    return this.http.get(this.uri.lessonsStudentURL + '/' + id);
+  }
 }

@@ -8,6 +8,7 @@ import {DialogComponent} from '../dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import * as jwt_decode from 'jwt-decode';
 import {HttpClient} from '@angular/common/http';
+import {LessonModel} from '../models/lesson.model';
 
 @Component({
   selector: 'app-profile-teacher',
@@ -29,6 +30,12 @@ export class ProfileTeacherComponent implements OnInit {
   public subscribe = true;
   public subscribeToIdsList: number[] = [];
   public subscribeText: string;
+
+  future_hosted_lessons: LessonModel[] = [];
+  future_joined_lessons: LessonModel[] = [];
+  past_hosted_lessons: LessonModel[] = [];
+  past_joined_lessons: LessonModel[] = [];
+
 
   constructor(public dialog: MatDialog,
               private router: Router,
@@ -81,7 +88,14 @@ export class ProfileTeacherComponent implements OnInit {
                     this.subscribeText = 'Subscribe Now';
                     this.subscribe = true;
                   }
-                  this.loading = false;
+                  this.userService.getTeacherLessonsById(+this.userId).subscribe(res=>{
+                    console.log(res);
+                    this.future_hosted_lessons = res['future_hosted_lessons'];
+                    this.future_joined_lessons = res['future_joined_lessons'];
+                    this.past_hosted_lessons = res['past_hosted_lessons'];
+                    this.past_joined_lessons = res['past_joined_lessons'];
+                    this.loading = false;
+                  });
                 });
               });
           });
@@ -100,7 +114,14 @@ export class ProfileTeacherComponent implements OnInit {
             this.userService.getLanguages().subscribe(
               allLan => {
                 this.languages = allLan;
-                this.loading = false;
+                this.userService.getTeacherLessons().subscribe(res=>{
+                  console.log(res);
+                  this.future_hosted_lessons = res['future_hosted_lessons'];
+                  this.future_joined_lessons = res['future_joined_lessons'];
+                  this.past_hosted_lessons = res['past_hosted_lessons'];
+                  this.past_joined_lessons = res['past_joined_lessons'];
+                  this.loading = false;
+                });
               });
           });
         });

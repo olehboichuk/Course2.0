@@ -14,6 +14,8 @@ export class Uris {
   public getLanguagesURL = '/api/languages';
   public lessonURL = '/api/lessons';
   public joinURL = '/api/lessons/join/';
+  public lessonsURL = '/api/user/lessons/teacher';
+  public lessonsStudentURL = '/api/user/lessons/student';
 
   // public userURL = 'http://localhost:3000/api/user/profile';
   // public userSubscriptionsURL = 'http://localhost:3000/api/user/subscriptions';
@@ -24,6 +26,8 @@ export class Uris {
   // public topicsURL = 'http://localhost:3000/api/topics';
   // public articleURL = 'http://localhost:3000/api/articles';
   // public lessonURL = 'http://localhost:3000/api/lessons';
+  // public lessonsURL = 'http://localhost:3000/api/user/lessons/teacher';
+  // public lessonsStudentURL = 'http://localhost:3000/api/user/lessons/student';
   // public joinURL = 'http://localhost:3000/api/lessons/join/';
   // public URL = 'http://localhost:3000/api/user/id';
   // public logoutURL = 'http://localhost:3000/api/logout';

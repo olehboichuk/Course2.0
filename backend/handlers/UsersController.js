@@ -6,6 +6,7 @@ router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
 let jwt = require('jsonwebtoken');
 const sql = require('../queryes/user.js');
+const sqlLessons = require('../queryes/lesson.js');
 
 // const pool = new Pool({
 //     user: 'postgres',
@@ -135,11 +136,86 @@ router.route('/languages')
       res.status(200).json(result.rows)
     });
   });
+
 router.route('/user/id')
   .get((req, res) => {
     let token = req.header('x-access-token');
     let id = jwt.decode(token).id;
     res.status(200).json(id)
+  });
+
+router.route('/user/lessons/teacher')
+  .get((req, res) => {
+    let token = req.header('x-access-token');
+    let id = jwt.decode(token).id;
+    let lessons = {};
+    pool.query(sqlLessons.future_joined_lessons_of_user, [id], (err, future_joined) => {
+      if (err) throw err;
+      lessons.future_joined_lessons = future_joined.rows;
+      pool.query(sqlLessons.past_joined_lessons_of_user, [id], (err, past_joined) => {
+        if (err) throw err;
+        lessons.past_joined_lessons = past_joined.rows;
+        pool.query(sqlLessons.future_hosted_lessons_of_user, [id], (err, future_hosted) => {
+          if (err) throw err;
+          lessons.future_hosted_lessons = future_hosted.rows;
+          pool.query(sqlLessons.past_hosted_lessons_of_user, [id], (err, past_hosted) => {
+            if (err) throw err;
+            lessons.past_hosted_lessons = past_hosted.rows;
+            res.status(200).json(lessons)
+          });
+        });
+      });
+    });
+  });
+router.route('/user/lessons/student')
+  .get((req, res) => {
+    let token = req.header('x-access-token');
+    let id = jwt.decode(token).id;
+    let lessons = {};
+    pool.query(sqlLessons.future_joined_lessons_of_user, [id], (err, future_joined) => {
+      if (err) throw err;
+      lessons.future_joined_lessons = future_joined.rows;
+      pool.query(sqlLessons.past_joined_lessons_of_user, [id], (err, past_joined) => {
+        if (err) throw err;
+        lessons.past_joined_lessons = past_joined.rows;
+        res.status(200).json(lessons)
+      });
+    });
+  });
+
+router.route('/user/lessons/teacher/:id')
+  .get((req, res) => {
+    let lessons = {};
+    pool.query(sqlLessons.future_joined_lessons_of_user, [req.params.id], (err, future_joined) => {
+      if (err) throw err;
+      lessons.future_joined_lessons = future_joined.rows;
+      pool.query(sqlLessons.past_joined_lessons_of_user, [req.params.id], (err, past_joined) => {
+        if (err) throw err;
+        lessons.past_joined_lessons = past_joined.rows;
+        pool.query(sqlLessons.future_hosted_lessons_of_user, [req.params.id], (err, future_hosted) => {
+          if (err) throw err;
+          lessons.future_hosted_lessons = future_hosted.rows;
+          pool.query(sqlLessons.past_hosted_lessons_of_user, [req.params.id], (err, past_hosted) => {
+            if (err) throw err;
+            lessons.past_hosted_lessons = past_hosted.rows;
+            res.status(200).json(lessons)
+          });
+        });
+      });
+    });
+  });
+router.route('/user/lessons/student/:id')
+  .get((req, res) => {
+    let lessons = {};
+    pool.query(sqlLessons.future_joined_lessons_of_user, [req.params.id], (err, future_joined) => {
+      if (err) throw err;
+      lessons.future_joined_lessons = future_joined.rows;
+      pool.query(sqlLessons.past_joined_lessons_of_user, [req.params.id], (err, past_joined) => {
+        if (err) throw err;
+        lessons.past_joined_lessons = past_joined.rows;
+        res.status(200).json(lessons)
+      });
+    });
   });
 
 module.exports = router;

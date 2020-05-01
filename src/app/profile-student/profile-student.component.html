@@ -5,7 +5,7 @@
     <!--    ЗАГАЛЬНА ІНФА ПРО СТУДЕНТА-->
     <form [formGroup]="changeForm">
       <div class="player">
-        <img style="width: 15%;object-fit: scale-down;" src="../../assets/img/user.png"/>
+        <img style="width: 30%;object-fit: scale-down;" src="../../assets/img/user.png"/>
         <div class="player__info">
           <div class="form__user">
             <div *ngIf="edited" class="player__item">
@@ -45,5 +45,21 @@
         </div>
       </div>
     </form>
+    <mat-tab-group class="lessons" mat-align-tabs="center">
+      <mat-tab label="Future joined lessons">
+        <div *ngFor="let ls of future_joined_lessons" class="lesson">
+          <p style="cursor:pointer;" [routerLink]="['/lesson', ls.id]">{{ls.title}}</p>
+          <p>{{ls.start_time | date:'mediumDate'}} {{ls.start_time | date:'shortTime'}}</p>
+        </div>
+        <div class="noless" *ngIf="future_joined_lessons.length<1">NO LESSONS</div>
+      </mat-tab>
+      <mat-tab label="Past joined lessons">
+        <div *ngFor="let ls of past_joined_lessons" class="lesson">
+          <p style="cursor:pointer;" [routerLink]="['/lesson', ls.id]">{{ls.title}}</p>
+          <p>{{ls.start_time | date:'mediumDate'}} {{ls.start_time | date:'shortTime'}}</p>
+        </div>
+        <div class="noless" *ngIf="past_joined_lessons.length<1">NO LESSONS</div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

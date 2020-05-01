@@ -40,7 +40,7 @@ import {CookieModule, CookieService} from 'ngx-cookie';
 import {Uris} from './services/uris';
 import { LessonsComponent } from './lessons/lessons.component';
 import { CreateLessonComponent } from './create-lesson/create-lesson.component';
-import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatDatepickerModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
 import {TimepickerActions, TimepickerConfig, TimepickerModule} from 'ngx-bootstrap/timepicker';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {DatePipe} from '@angular/common';
@@ -70,34 +70,35 @@ import { LessonComponent } from './lesson/lesson.component';
     CreateLessonComponent,
     LessonComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatToolbarModule,
-    HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatSlideToggleModule,
-    MatIconModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    RatingModule,
-    MatDialogModule,
-    MatChipsModule,
-    MatSnackBarModule,
-    CookieModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    MatDatepickerModule,
-    TimepickerModule,
-    MatNativeDateModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatToolbarModule,
+        HttpClientModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatSlideToggleModule,
+        MatIconModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        RatingModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        CookieModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        MatDatepickerModule,
+        TimepickerModule,
+        MatNativeDateModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        MatTabsModule,
+    ],
   providers: [TimepickerConfig, TimepickerActions, DatePipe, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

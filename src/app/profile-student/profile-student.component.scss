@@ -31,6 +31,7 @@ input,textarea{
 
 form {
   margin-bottom: 10px;
+  width: 50%;
 }
 
 .content::-webkit-scrollbar {
@@ -51,6 +52,7 @@ form {
   max-height: 80vh;
   overflow-y: auto;
   overflow-x: hidden;
+  width: 100%;
 }
 
 .profile::-webkit-scrollbar {
@@ -87,7 +89,7 @@ form {
   justify-content: flex-start;
   //width: 100%;
   margin-left: 2%;
-  width: 50%;
+  width: 70%;
 
   .form__input {
     width: 47.5%;
@@ -197,7 +199,7 @@ form {
   justify-content: center;
   flex-direction: column;
   align-self: flex-end;
-  width: 50%;
+  width: 100%;
 
   .form__input {
     width: 80%;
@@ -322,4 +324,38 @@ mat-expansion-panel {
 }
 .material-icons{
   align-self: center;
+}
+
+
+.lessons{
+  width: 50%;
+  height: 40%;
+  max-height: 28vh;
+}
+
+.mat-tab-body-wrapper {
+  //height: 100%!important;
+}
+.lesson{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 17px;
+  color: #F5F5F5;
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all 0.5s ease-in-out;
+}
+.lesson:hover{
+  color: #00adf5;
+}
+
+.noless{
+  margin-bottom: 5px;
+  color: #31bafd;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }

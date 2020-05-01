@@ -6,6 +6,7 @@ import {UserModel} from "../models/user.model";
 import {UserService} from "../services/user.service";
 import {DialogComponent} from "../dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {LessonModel} from '../models/lesson.model';
 
 @Component({
   selector: 'app-profile-student',
@@ -19,6 +20,8 @@ export class ProfileStudentComponent implements OnInit {
   public user: UserModel;
   public isMyProfile: boolean;
   public userId: string;
+  future_joined_lessons: LessonModel[] = [];
+  past_joined_lessons: LessonModel[] = [];
 
   constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private userService: UserService, public route: ActivatedRoute) {
   }
@@ -38,14 +41,23 @@ export class ProfileStudentComponent implements OnInit {
 
         this.userService.getUserById(+this.userId).subscribe(res => {
           this.user = res[0];
-          this.loading = false;
+          this.userService.getStudentLessonsById(+this.userId).subscribe(res=>{
+            console.log(res);
+            this.future_joined_lessons = res['future_joined_lessons'];
+            this.past_joined_lessons = res['past_joined_lessons'];
+            this.loading = false;
+          });
         })
       } else {
         this.isMyProfile = true;
-
         this.userService.getUser().subscribe(res => {
           this.user = res[0];
-          this.loading = false;
+          this.userService.getStudentLessons().subscribe(res=>{
+            console.log(res);
+            this.future_joined_lessons = res['future_joined_lessons'];
+            this.past_joined_lessons = res['past_joined_lessons'];
+            this.loading = false;
+          });
         })
       }
     });
