@@ -9,5 +9,9 @@
     <button class="btn" mat-menu-item routerLink="/register-teacher">As teacher</button>
     <button class="btn" mat-menu-item routerLink="/register-student">As student</button>
   </mat-menu>
-  <button *ngIf="_authService.isLoggedIn()" (click)="_authService.logoutUser()" mat-button routerLink="/">Log out</button>
+  <button *ngIf="_authService.isLoggedIn()" [matMenuTriggerFor]="profile" style="outline: none;" mat-button>{{_authService.user_name}}</button>
+  <mat-menu #profile="matMenu">
+    <button class="btn" mat-menu-item [routerLink]="[_authService.teacher==='TEACHER'?'/teacher-profile':'/student-profile']">My profile</button>
+    <button class="btn" mat-menu-item (click)="_authService.logoutUser()" routerLink="/">Log out</button>
+  </mat-menu>
 </mat-toolbar>

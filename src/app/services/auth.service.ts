@@ -15,6 +15,8 @@ import {Uris} from './uris';
 export class AuthService {
   // tslint:disable-next-line:variable-name
   public _logInUser = false;
+  public teacher = localStorage.getItem('role');
+  public user_name = localStorage.getItem('login');
 
   constructor(private http: HttpClient, private router: Router, private uri: Uris) {
   }
@@ -24,6 +26,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
+    this.user_name = localStorage.getItem('login');
+    this.teacher = localStorage.getItem('role');
     return this._logInUser;
   }
 
@@ -35,6 +39,7 @@ export class AuthService {
     this.http.get(this.uri.logoutURL);
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('login');
     this._logInUser = false;
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     this.router.navigate(['/login']);

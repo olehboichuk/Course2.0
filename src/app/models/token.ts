@@ -1,5 +1,6 @@
 export class Token {
   public token: string;
-  public role: string;
+  public roles: string[];
+  public login: string;
   public active: string;
 }

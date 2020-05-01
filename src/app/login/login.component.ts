@@ -41,19 +41,18 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user)
       .subscribe(data => {
           if (data.active) {
+            console.log(data);
+            for (const i in data.roles) {
+              // @ts-ignore
+              this.roles[i] = data.roles[i].name;
+            }
             localStorage.setItem('token', data.token);
-            localStorage.setItem('role', data.role);
+            localStorage.setItem('role', this.roles.includes('TEACHER')?'TEACHER':'STUDENT');
+            localStorage.setItem('login', data.login);
             this.userService.getUserRole().subscribe(res => {
-              console.log(res);
-              // tslint:disable-next-line:forin
-              for (const i in res) {
-                this.roles[i] = res[i].name;
-              }
               this.loginService._logInUser = true;
               if (this.roles.includes('TEACHER')) {
                 this.router.navigate(['/teacher-profile']);
-              } else if (this.roles.includes('ADMIN')) {
-                this.router.navigate(['/admin']);
               } else {
                 this.router.navigate(['/student-profile']);
               }

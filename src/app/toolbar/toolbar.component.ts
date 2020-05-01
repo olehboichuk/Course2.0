@@ -21,6 +21,7 @@ export class ToolbarComponent implements OnInit {
     this.httpClient.get(this.uri.URL).subscribe(res => {
       this.authService.logInUserBool = true;
     });
+
   }
 
 }

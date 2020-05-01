@@ -58,11 +58,18 @@ router.post('/login', function (req, res) {
     let token = jwt.sign({id: result.rows[0].id}, config.secret, {
       expiresIn: 83600 // expires in 1 hour
     });
-    res.cookie('token', token, {maxAge: 3600000}).status(200).send({ // expires in 1 hour
-      auth: true,
-      token: token,
-      active: result.rows[0].active
+    console.log(result.rows[0].login);
+    pool.query(sql.find_user_roles, [result.rows[0].id], (err, resul) => {
+      if (err) throw err;
+      res.cookie('token', token, {maxAge: 3600000}).status(200).send({ // expires in 1 hour
+        auth: true,
+        token: token,
+        roles: resul.rows,
+        active: result.rows[0].active,
+        login: result.rows[0].login
+      });
     });
+
   });
 });
 
