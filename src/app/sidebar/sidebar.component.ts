@@ -99,14 +99,14 @@ export class SidebarComponent implements OnInit {
           role: this.student,
           active: false
         },
-        {
-          activeSRC: '../../assets/img/notificationActive.svg',
-          noActiveSRC: '../../assets/img/notificationNoActive.svg',
-          routerLink: '/notifications',
-          alt: 'notifications',
-          role: this.teacher,
-          active: false
-        },
+        // {
+        //   activeSRC: '../../assets/img/notificationActive.svg',
+        //   noActiveSRC: '../../assets/img/notificationNoActive.svg',
+        //   routerLink: '/notifications',
+        //   alt: 'notifications',
+        //   role: this.teacher,
+        //   active: false
+        // },
         {
           activeSRC: '../../assets/img/createArticleActive.svg',
           noActiveSRC: '../../assets/img/createArticleNoActive.svg',
@@ -140,14 +140,14 @@ export class SidebarComponent implements OnInit {
           active: false
         },
 
-        {
-          activeSRC: '../../assets/img/notificationActive.svg',
-          noActiveSRC: '../../assets/img/notificationNoActive.svg',
-          routerLink: '/notifications',
-          alt: 'notifications',
-          role: this.student,
-          active: false
-        },
+        // {
+        //   activeSRC: '../../assets/img/notificationActive.svg',
+        //   noActiveSRC: '../../assets/img/notificationNoActive.svg',
+        //   routerLink: '/notifications',
+        //   alt: 'notifications',
+        //   role: this.student,
+        //   active: false
+        // },
         {
           activeSRC: '../../assets/img/articleActive.svg',
           noActiveSRC: '../../assets/img/articleNoActive.svg',
@@ -156,22 +156,22 @@ export class SidebarComponent implements OnInit {
           role: true,
           active: false
         },
-        {
-          activeSRC: '../../assets/img/settingsActive.svg',
-          noActiveSRC: '../../assets/img/settingsNoActive.svg',
-          routerLink: '/change-password',
-          alt: 'change-password',
-          role: this.teacher,
-          active: false
-        },
-        {
-          activeSRC: '../../assets/img/settingsActive.svg',
-          noActiveSRC: '../../assets/img/settingsNoActive.svg',
-          routerLink: '/change-password',
-          alt: 'change-password',
-          role: this.student,
-          active: false
-        }
+        // {
+        //   activeSRC: '../../assets/img/settingsActive.svg',
+        //   noActiveSRC: '../../assets/img/settingsNoActive.svg',
+        //   routerLink: '/change-password',
+        //   alt: 'change-password',
+        //   role: this.teacher,
+        //   active: false
+        // },
+        // {
+        //   activeSRC: '../../assets/img/settingsActive.svg',
+        //   noActiveSRC: '../../assets/img/settingsNoActive.svg',
+        //   routerLink: '/change-password',
+        //   alt: 'change-password',
+        //   role: this.student,
+        //   active: false
+        // }
       ];
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (!(paramMap.has('speakerId') || paramMap.has('listenerId'))) {
