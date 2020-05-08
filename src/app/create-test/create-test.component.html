@@ -27,7 +27,7 @@
         </button>
       </div>
     </form>
-    <div *ngIf="!test.length<1" class="preview">
+    <div *ngIf="test.length>0" class="preview">
       <p class="form__headline">test preview</p>
       <div class="input">
         <form class="input_msg_write" (ngSubmit)="addTest()">
