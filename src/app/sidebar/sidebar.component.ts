@@ -156,22 +156,30 @@ export class SidebarComponent implements OnInit {
           role: true,
           active: false
         },
-        // {
-        //   activeSRC: '../../assets/img/settingsActive.svg',
-        //   noActiveSRC: '../../assets/img/settingsNoActive.svg',
-        //   routerLink: '/change-password',
-        //   alt: 'change-password',
-        //   role: this.teacher,
-        //   active: false
-        // },
-        // {
-        //   activeSRC: '../../assets/img/settingsActive.svg',
-        //   noActiveSRC: '../../assets/img/settingsNoActive.svg',
-        //   routerLink: '/change-password',
-        //   alt: 'change-password',
-        //   role: this.student,
-        //   active: false
-        // }
+        {
+          activeSRC: '../../assets/img/testCreateActive.svg',
+          noActiveSRC: '../../assets/img/testCreateNoActive.svg',
+          routerLink: '/create-test',
+          alt: 'create-test',
+          role: this.teacher,
+          active: false
+        },
+        {
+          activeSRC: '../../assets/img/testActive.svg',
+          noActiveSRC: '../../assets/img/testNoActive.svg',
+          routerLink: '/test-list',
+          alt: 'tests-list',
+          role: this.teacher,
+          active: false
+        },
+        {
+          activeSRC: '../../assets/img/testActive.svg',
+          noActiveSRC: '../../assets/img/testNoActive.svg',
+          routerLink: '/test-list',
+          alt: 'tests-list',
+          role: this.student,
+          active: false
+        }
       ];
       this.route.paramMap.subscribe((paramMap: ParamMap) => {
         if (!(paramMap.has('speakerId') || paramMap.has('listenerId'))) {

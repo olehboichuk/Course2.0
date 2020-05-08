@@ -9,6 +9,7 @@ const sqlLanguages = require('../queryes/language.js');
 const sqlTopics = require('../queryes/topic.js');
 const sqlArticles = require('../queryes/article.js');
 const sqlLessons = require('../queryes/lesson.js');
+const sqlTests = require('../queryes/test.js');
 
 // const pool = new Pool({
 //     user: 'postgres',
@@ -212,6 +213,86 @@ router.route('/lessons/join/:id')
     res.status(200).json(result.rows)
   });
 });
+
+router.route('/tests')
+  .get((req, res) => {
+    pool.query(sqlTests.get_all_tests, (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  })
+  .post((req, res) => {
+    let token = req.header('x-access-token');
+    let id = jwt.decode(token).id;
+    pool.query(sqlTests.create_test, [id,
+      req.body.test_name,
+      req.body.time_posted,
+      req.body.questions_number], (err, result_test) => {
+      if (err) throw err;
+      let testId = result_test.rows[0].id;
+      req.body.questions.forEach(el => {
+        pool.query(sqlTests.create_question, [testId,
+          el.question,
+          el.first_question,
+          el.second_question,
+          el.third_question,
+          el.right_question], (err, result) => {
+          if (err) throw err;
+          if (req.body.questions[req.body.questions.length - 1] === el)
+            res.status(200).json(result.rows)
+        });
+      })
+    });
+  });
+
+router.route('/tests/user')
+  .post((req, res) => {
+    let token = req.header('x-access-token');
+    let id = jwt.decode(token).id;
+    pool.query(sqlTests.create_user_answer, [
+      req.body.id_test,
+      id,
+      req.body.user_points,
+      req.body.time_spend], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  });
+
+router.route('/tests/user/:id')
+  .get((req, res) => {
+    let token = req.header('x-access-token');
+    let id = jwt.decode(token).id;
+    pool.query(sqlTests.get_user_answer, [
+      req.params.id,
+      id], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  });
+
+router.route('/tests/:id')
+  .get((req, res) => {
+    pool.query(sqlTests.find_test_by_id, [req.params.id], (err, result) => {
+      if (err) throw err;
+      let test = result.rows[0];
+      pool.query(sqlTests.get_test_questions, [req.params.id], (err, results) => {
+        if (err) throw err;
+        test.questions = results.rows;
+        pool.query(sqlTests.get_top_user_answer, [req.params.id], (err, result) => {
+          if (err) throw err;
+          test.top_user_answer = result.rows;
+          res.status(200).json(test);
+        });
+      });
+    });
+  })
+  .delete((req, res) => {
+    pool.query(sqlTests.remove_test, [req.params.id], (err, result) => {
+      if (err) throw err;
+      res.status(200).json(result.rows)
+    });
+  })
 
 
 let minutes = 15, the_interval = minutes * 60 * 1000;

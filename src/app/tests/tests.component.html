@@ -1,0 +1,27 @@
+<app-sidebar></app-sidebar>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<main>
+  <div *ngIf="!loading" class="content">
+    <p class="form__headline">Tests</p>
+    <div class="cardList selection-off" *ngIf="tests.length > 0">
+      <ng-container *ngFor="let test of tests">
+        <mat-card [ngClass]="{'cardListItem':true}">
+          <mat-card-title fxLayout="row" style="width: 90%;">
+            {{test.test_name}}
+          </mat-card-title>
+          <mat-card-subtitle [routerLink]="['/teacher-profile',test.id_author]" fxLayout="row" class="authorName">
+            {{test.teacher_first_name}} {{test.teacher_last_name}}
+          </mat-card-subtitle>
+          <mat-card-subtitle fxLayout="row">
+            {{test.time_posted | date:'mediumDate'}} {{test.time_posted | date:'shortTime'}}
+          </mat-card-subtitle>
+<!--          <div class="wrap">-->
+<!--            <p>{{test.users_join}}/{{test.questions_number}}</p>-->
+<!--          </div>-->
+          <p [routerLink]="['/test',test.id]" class="text">go</p>
+        </mat-card>
+      </ng-container>
+    </div>
+    <p class="info-text mat-body-2 form__headline" style="font-size: 19px; color: #000000;" *ngIf="!loading&&tests.length <= 0 ">No tests Yet</p>
+  </div>
+</main>

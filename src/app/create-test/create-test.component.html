@@ -1,0 +1,67 @@
+<app-sidebar></app-sidebar>
+<mat-spinner *ngIf="loading"></mat-spinner>
+<main>
+  <div *ngIf="!loading" class="content">
+    <form (ngSubmit)="onSubmit()" [formGroup]="createTestForm">
+      <p class="form__headline">ADD QUESTION</p>
+      <mat-form-field class="form__input">
+        <input matInput formControlName="question" type="text" placeholder="Type your question">
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <input matInput formControlName="first_question" type="text" placeholder="Wrong answer 1">
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <input matInput formControlName="second_question" type="text" placeholder="Wrong answer 2">
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <input matInput formControlName="third_question" type="text" placeholder="Wrong answer 3">
+      </mat-form-field>
+      <mat-form-field class="form__input">
+        <input matInput formControlName="right_question" type="text" placeholder="Right answer">
+      </mat-form-field>
+      <div class="form__group">
+        <button [disabled]="!createTestForm.valid" class="form__button" disabled type="submit"><p *ngIf="!loading">Add
+          question</p>
+          <img *ngIf="loading"
+               src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+        </button>
+      </div>
+    </form>
+    <div *ngIf="!test.length<1" class="preview">
+      <p class="form__headline">test preview</p>
+      <div class="input">
+        <form class="input_msg_write" (ngSubmit)="addTest()">
+          <input
+            type="text"
+            class="write_msg"
+            placeholder="Type a name of test"
+            name="newComment"
+            [(ngModel)]="testTitle"
+          />
+          <button [disabled]="!testTitle" class="msg_send_btn" type="submit">
+            CREATE A TEST
+          </button>
+        </form>
+      </div>
+      <div class="questions">
+        <div class="question" *ngFor="let que of test; let i = index">
+          <div class="que">
+            <p class="question--text">{{i + 1}}. {{que.question}}</p>
+            <p class="answer">1) {{que.first_question}}</p>
+            <p class="answer">2) {{que.second_question}}</p>
+            <p class="answer">3) {{que.third_question}}</p>
+            <p class="right_answer">4) {{que.right_question}}</p>
+          </div>
+          <button mat-icon-button [matMenuTriggerFor]="editMenu">
+            <mat-icon style="color: white">more_vert</mat-icon>
+          </button>
+          <mat-menu #editMenu="matMenu" xPosition="before">
+            <button mat-menu-item (click)="onEdit(que)">Edit</button>
+            <button mat-menu-item (click)="onDelete(i)">Delete</button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

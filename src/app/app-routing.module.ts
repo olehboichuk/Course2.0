@@ -7,7 +7,6 @@ import {RegisterStudentComponent} from './register-student/register-student.comp
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {ProfileStudentComponent} from './profile-student/profile-student.component';
 import {ProfileTeacherComponent} from './profile-teacher/profile-teacher.component';
-import {VerificationComponent} from './verification/verification.component';
 import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
 import {CreateArticleComponent} from './create-article/create-article.component';
 import {ArticlesComponent} from './articles/articles.component';
@@ -15,6 +14,9 @@ import {ArticleComponent} from './article/article.component';
 import {CreateLessonComponent} from './create-lesson/create-lesson.component';
 import {LessonsComponent} from './lessons/lessons.component';
 import {LessonComponent} from './lesson/lesson.component';
+import {CreateTestComponent} from './create-test/create-test.component';
+import {TestsComponent} from './tests/tests.component';
+import {TestComponent} from './test/test.component';
 
 
 const routes: Routes = [
@@ -29,14 +31,16 @@ const routes: Routes = [
   {path: 'student-profile', component: ProfileStudentComponent},
   {path: 'subscriptions', component: SubscriptionsComponent},
   {path: 'create-article', component: CreateArticleComponent},
+  {path: 'create-test', component: CreateTestComponent},
   {path: 'create-lesson', component: CreateLessonComponent},
   {path: 'edit-article/:articleId', component: CreateArticleComponent},
   {path: 'edit-lesson/:lessonId', component: CreateLessonComponent},
   {path: 'lesson-list', component: LessonsComponent},
   {path: 'article-list', component: ArticlesComponent},
+  {path: 'test-list', component: TestsComponent},
   {path: 'article/:articleId', component: ArticleComponent},
   {path: 'lesson/:lessonId', component: LessonComponent},
-  {path: 'verify', component: VerificationComponent},
+  {path: 'test/:testId', component: TestComponent},
 ];
 
 @NgModule({

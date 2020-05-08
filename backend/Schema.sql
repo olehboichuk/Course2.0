@@ -1,5 +1,3 @@
-CREATE SCHEMA IF NOT EXISTS coursework;
-
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS roles CASCADE;
 DROP TABLE IF EXISTS users_roles CASCADE;
@@ -14,9 +12,9 @@ DROP TABLE IF EXISTS subscriptions CASCADE;
 DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS articles_topics CASCADE;
 DROP TABLE IF EXISTS comments CASCADE;
-DROP TABLE IF EXISTS notification_types CASCADE;
-DROP TABLE IF EXISTS notifications CASCADE;
-DROP TABLE IF EXISTS complaints CASCADE;
+DROP TABLE IF EXISTS test CASCADE;
+DROP TABLE IF EXISTS question CASCADE;
+DROP TABLE IF EXISTS users_tests CASCADE;
 
 CREATE TABLE users
 (
@@ -29,7 +27,7 @@ CREATE TABLE users
     active     BOOLEAN   NOT NULL DEFAULT TRUE,
     about      TEXT      NULL,
     rate       REAL      NULL
-    CONSTRAINT rate_range CHECK (rate >= 0 AND rate <= 5),
+        CONSTRAINT rate_range CHECK (rate >= 0 AND rate <= 5),
     num_rates  INTEGER   NOT NULL DEFAULT 0,
     PRIMARY KEY (id)
 );
@@ -144,7 +142,7 @@ CREATE TABLE comments
 (
     id          BIGSERIAL NOT NULL,
     id_author   BIGINT    NOT NULL,
-    id_lesson  BIGINT    NOT NULL,
+    id_lesson   BIGINT    NOT NULL,
     contents    TEXT      NOT NULL,
     time_posted TIMESTAMP NOT NULL,
     FOREIGN KEY (id_author) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -152,35 +150,37 @@ CREATE TABLE comments
     PRIMARY KEY (id)
 );
 
-CREATE TABLE notification_types
+CREATE TABLE test
 (
-    id   SERIAL NOT NULL,
-    name TEXT   NOT NULL,
+    id               BIGSERIAL NOT NULL,
+    id_author        BIGINT    NOT NULL,
+    test_name        TEXT      NOT NULL,
+    time_posted      TIMESTAMP NOT NULL,
+    questions_number INT       NOT NULL,
+    FOREIGN KEY (id_author) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (id)
 );
 
-CREATE TABLE notifications
-(
-    id           BIGSERIAL NOT NULL,
-    message      TEXT      NOT NULL,
-    id_user      BIGINT    NOT NULL,
-    read         BOOLEAN   NOT NULL DEFAULT FALSE,
-    id_type      INTEGER   NOT NULL,
-    time_created TIMESTAMP NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (id_type) REFERENCES notification_types (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE complaints
+CREATE TABLE question
 (
     id             BIGSERIAL NOT NULL,
-    reason         TEXT      NOT NULL,
-    time_posted    TIMESTAMP NOT NULL,
-    id_source      BIGINT    NOT NULL,
-    id_destination BIGINT    NOT NULL,
-    read           BOOLEAN   NOT NULL DEFAULT FALSE,
-    FOREIGN KEY (id_source) REFERENCES users (id) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (id_destination) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    id_test        BIGINT    NOT NULL,
+    question       TEXT      NOT NULL,
+    first          TEXT      NOT NULL,
+    second         TEXT      NOT NULL,
+    third          TEXT      NOT NULL,
+    right_question TEXT      NOT NULL,
+    FOREIGN KEY (id_test) REFERENCES test (id) ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY (id)
+);
+
+CREATE TABLE users_tests
+(
+    id_test     BIGINT NOT NULL,
+    id_user     BIGINT NOT NULL,
+    user_points INT    NOT NULL,
+    time_spend  BIGINT NOT NULL,
+    FOREIGN KEY (id_test) REFERENCES test (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (id_user) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id_test, id_user)
 );

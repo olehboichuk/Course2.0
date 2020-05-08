@@ -18,6 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './register-student.component.html',
   styleUrls: ['./register-student.component.scss']
 })
+
 export class RegisterStudentComponent implements OnInit {
   registerForm: FormGroup;
   public loading = false;

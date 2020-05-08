@@ -16,7 +16,6 @@ import {ProfileTeacherComponent} from './profile-teacher/profile-teacher.compone
 import {ProfileStudentComponent} from './profile-student/profile-student.component';
 import {ForgotPasswordComponent} from './forgot-password/forgot-password.component';
 import {HomeComponent} from './home/home.component';
-import {VerificationComponent} from './verification/verification.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -38,15 +37,20 @@ import {ArticleComponent} from './article/article.component';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 import {CookieModule, CookieService} from 'ngx-cookie';
 import {Uris} from './services/uris';
-import { LessonsComponent } from './lessons/lessons.component';
-import { CreateLessonComponent } from './create-lesson/create-lesson.component';
-import {MatDatepickerModule, MatListModule, MatNativeDateModule, MatTabsModule} from '@angular/material';
+import {LessonsComponent} from './lessons/lessons.component';
+import {CreateLessonComponent} from './create-lesson/create-lesson.component';
+import {MatDatepickerModule, MatListModule, MatNativeDateModule, MatStepperModule, MatTableModule, MatTabsModule} from '@angular/material';
 import {TimepickerActions, TimepickerConfig, TimepickerModule} from 'ngx-bootstrap/timepicker';
 import {BsDatepickerModule} from 'ngx-bootstrap/datepicker';
 import {DatePipe} from '@angular/common';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
-import { LessonComponent } from './lesson/lesson.component';
-import { CommentsSectionComponent } from './comments-section/comments-section.component';
+import {LessonComponent} from './lesson/lesson.component';
+import {CommentsSectionComponent} from './comments-section/comments-section.component';
+import {CreateTestComponent} from './create-test/create-test.component';
+import {TestsComponent} from './tests/tests.component';
+import {TestComponent} from './test/test.component';
+import {FormlyModule} from '@ngx-formly/core';
+import {FormlyBootstrapModule} from '@ngx-formly/bootstrap';
 
 
 @NgModule({
@@ -60,7 +64,6 @@ import { CommentsSectionComponent } from './comments-section/comments-section.co
     ProfileStudentComponent,
     ForgotPasswordComponent,
     HomeComponent,
-    VerificationComponent,
     SidebarComponent,
     DialogComponent,
     SubscriptionsComponent,
@@ -70,39 +73,46 @@ import { CommentsSectionComponent } from './comments-section/comments-section.co
     LessonsComponent,
     CreateLessonComponent,
     LessonComponent,
-    CommentsSectionComponent
+    CommentsSectionComponent,
+    CreateTestComponent,
+    TestsComponent,
+    TestComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatToolbarModule,
-    HttpClientModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatCardModule,
-    MatSlideToggleModule,
-    MatIconModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    RatingModule,
-    MatDialogModule,
-    MatChipsModule,
-    MatSnackBarModule,
-    CookieModule.forRoot(),
-    BsDatepickerModule.forRoot(),
-    MatDatepickerModule,
-    TimepickerModule,
-    MatNativeDateModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
-    MatTabsModule,
-    FormsModule,
-    MatListModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatToolbarModule,
+        HttpClientModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatSlideToggleModule,
+        MatIconModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        RatingModule,
+        MatDialogModule,
+        MatChipsModule,
+        MatSnackBarModule,
+        CookieModule.forRoot(),
+        BsDatepickerModule.forRoot(),
+        MatDatepickerModule,
+        TimepickerModule,
+        MatNativeDateModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
+        MatTabsModule,
+        FormsModule,
+        MatListModule,
+        MatStepperModule,
+        FormlyBootstrapModule,
+        FormlyModule.forRoot(),
+        MatTableModule,
+    ],
   providers: [TimepickerConfig, TimepickerActions, DatePipe, {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
