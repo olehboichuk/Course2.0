@@ -68,7 +68,8 @@
       <p class="form__headline">test answers</p>
       <p class="tops">Time
         spend: {{(time_spend | date:'hh') === '02' ? '' : (time_spend | date:'hh') + ' h.'}} {{(time_spend | date:'mm') === '00' ? '' : (time_spend | date:'mm') + ' m.'}} {{(time_spend | date:'ss') === '00' ? '' : (time_spend | date:'ss') + ' s.'}} Points: {{points_count +'/'+test_results.length}}</p>
-      <div class="questions">
+      <div class="questions selection-off">
+
         <div class="question" *ngFor="let que of test_results; let i = index">
           <div class="que">
             <p class="question--text">{{i + 1}}. {{que.question}}</p>

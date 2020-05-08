@@ -20,6 +20,7 @@ export class Uris {
   public testURL = '/api/tests';
   public userTestURL = '/api/tests/user';
 
+
   // public userURL = 'http://localhost:3000/api/user/profile';
   // public userSubscriptionsURL = 'http://localhost:3000/api/user/subscriptions';
   // public subscribeURL = 'http://localhost:3000/api/user/';
