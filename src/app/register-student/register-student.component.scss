@@ -107,6 +107,9 @@ input{
   .content {
     width: 70%;
   }
+  .form__headline{
+    text-align: center;
+  }
 }
 
 @media (max-width: 620px) {
@@ -117,6 +120,9 @@ input{
   .form__button {
     align-self: center;
   }
+  .form__headline{
+    text-align: center;
+  }
 }
 
 @media (max-width: 460px) {
@@ -126,5 +132,8 @@ input{
   }
   .form__button {
     align-self: center;
+  }
+  .form__headline{
+    text-align: center;
   }
 }

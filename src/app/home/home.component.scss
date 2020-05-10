@@ -1,0 +1,47 @@
+@import "../SCSS/_mixins.scss";
+main{
+  width: 100vw;
+  height: 92vh;
+  overflow: hidden;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  background-image: url('../../assets/img/qsgYO8.jpg');
+}
+
+body{
+  overflow: hidden!important;
+}
+
+.welcome{
+  padding-left: 40%;
+  padding-top: 15%;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 60px;
+  letter-spacing: 5px;
+  word-spacing: 6px;
+  color: #b0f3ff;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+}
+
+@include for-tablet-landscape-up{
+  .welcome{
+    padding-left: 10%;
+    padding-top: 15%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 60px;
+    letter-spacing: 5px;
+    word-spacing: 6px;
+    color: #b0f3ff;
+    font-weight: 400;
+    text-decoration: none solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
+  }
+}
+

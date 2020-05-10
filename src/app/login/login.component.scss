@@ -9,6 +9,8 @@ main {
 }
 
 
+
+
 .content {
   margin-top: 120px;
   margin-bottom: 60px;
@@ -17,6 +19,18 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@include for-tablet-landscape-up{
+  .content {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    height: 70%;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .group__headline{

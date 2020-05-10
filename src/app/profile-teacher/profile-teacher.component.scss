@@ -1,3 +1,5 @@
+@import "../SCSS/_mixins.scss";
+
 $header_font: "Roboto", serif;
 $header_text_color: #152812;
 $no_active_color: #CACACA;
@@ -17,8 +19,8 @@ $background_color_7: #d6440c;
 $background_color_8: #ffea38;
 $header_text_color2: #74b9ff;
 
-input,textarea{
-  color:#FFFFFF;
+input, textarea {
+  color: #FFFFFF;
 }
 
 .content {
@@ -40,6 +42,7 @@ form {
   resize: none;
   height: 52px;
   overflow-x: hidden;
+
   &::-webkit-scrollbar {
     width: 6px;
     background: #252525;
@@ -131,6 +134,7 @@ form {
   justify-content: center;
   margin-top: 7px;
 }
+
 .underrate {
   display: -webkit-box;
   display: flex;
@@ -142,7 +146,7 @@ form {
   font-weight: inherit;
 }
 
-.photo-rating{
+.photo-rating {
   display: flex;
   width: 30%;
   flex-direction: column;
@@ -170,6 +174,7 @@ form {
   color: #a9c9e2;
   padding-top: 2px;
 }
+
 .complaints__count {
   outline: none;
   color: #322b6b !important;
@@ -191,6 +196,7 @@ form {
   color: $color_2;
   align-self: center;
 }
+
 .club--print-text {
   font-family: $header_font;
   font-style: normal;
@@ -211,6 +217,7 @@ form {
   color: #01134e;
   align-self: center;
 }
+
 .club__name-print {
   font-family: $header_font;
   font-style: normal;
@@ -224,7 +231,7 @@ form {
   display: flex;
 }
 
-.club__heder-print{
+.club__heder-print {
   display: flex;
   justify-content: center;
 }
@@ -249,12 +256,14 @@ form {
     width: 80%;
   }
 }
-.add__form{
+
+.add__form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
   height: 100%;
+
   .form__input {
     width: 50%;
   }
@@ -353,20 +362,24 @@ mat-expansion-panel {
 .mat-header-cell {
   padding: 20px 20px 20px 0;
 }
-.add{
+
+.add {
   display: flex;
   width: 100%;
   justify-content: center;
 }
-.btns{
+
+.btns {
   display: flex;
   justify-content: space-around;
   width: 27%;
 }
-.error{
+
+.error {
   text-align-last: center;
 }
-.material-icons{
+
+.material-icons {
   align-self: center;
 }
 
@@ -385,6 +398,7 @@ mat-expansion-panel {
   border-radius: 10%;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
+
   &:before {
     position: absolute;
     top: 13px;
@@ -395,6 +409,7 @@ mat-expansion-panel {
     background: #ffffff;
     transform: rotate(90deg);
   }
+
   &:after {
     position: absolute;
     top: 13px;
@@ -406,16 +421,18 @@ mat-expansion-panel {
   }
 }
 
-.wrap{
+.wrap {
   align-self: center;
   margin-top: 8px;
 }
 
-.check{
+.check {
   background: #ff0808;
+
   &:before {
     background: #ffffff;
   }
+
   &:after {
     background: #ffffff;
   }
@@ -438,13 +455,14 @@ mat-expansion-panel {
 
 .parent {
   position: relative;
+  margin-left: 36px; margin-top: 6px;
   .sub {
     transition: all 0.5s ease-in-out;
   }
 }
 
 .text {
-  cursor:pointer;
+  cursor: pointer;
   font-size: 17px;
   color: #F5F5F5;
   font-family: 'Open Sans', sans-serif;
@@ -454,7 +472,7 @@ mat-expansion-panel {
 }
 
 
-.lessons{
+.lessons {
   width: 50%;
   height: 40%;
   max-height: 28vh;
@@ -463,7 +481,8 @@ mat-expansion-panel {
 .mat-tab-body-wrapper {
   //height: 100%!important;
 }
-.lesson{
+
+.lesson {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -475,14 +494,56 @@ mat-expansion-panel {
   text-transform: uppercase;
   transition: all 0.5s ease-in-out;
 }
-.lesson:hover{
+
+.lesson:hover {
   color: #00adf5;
 }
 
-.noless{
+.noless {
   margin-bottom: 5px;
   color: #31bafd;
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+.icon-teacher {
+  width: 100%;
+  object-fit: scale-down;
+}
+
+.subs{
+  display: flex;
+}
+
+@include for-tablet-landscape-up {
+  form {
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .lessons {
+    width: 100%;
+    height: 40%;
+    max-height: 28vh;
+  }
+  .lesson {
+    font-size: 11px;
+  }
+  .player {
+    flex-direction: column;
+  }
+  .photo-rating {
+    width: 100%;
+  }
+  .icon-teacher {
+    width: 50%;
+    object-fit: scale-down;
+    align-self: center;
+  }
+  .parent {
+    margin-left: 6px; margin-top: 6px;
+  }
+  .button{
+    position: inherit;
+  }
 }

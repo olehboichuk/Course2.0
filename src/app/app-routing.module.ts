@@ -20,7 +20,7 @@ import {TestComponent} from './test/test.component';
 
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register-teacher', component: RegisterTeacherComponent},
   {path: 'register-student', component: RegisterStudentComponent},

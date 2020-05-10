@@ -13,6 +13,8 @@
     padding-top: 40px;
     position: absolute;
     display: none;
+    background-color: #343434;
+    height: 100%;
     transition: all 0.5s ease;
     &.active{
       display: flex;
