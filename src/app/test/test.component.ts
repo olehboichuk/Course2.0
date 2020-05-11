@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {TestModel} from '../models/test.model';
 import {TestService} from '../services/test.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -48,7 +48,7 @@ export class TestComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router,
               public route: ActivatedRoute, public testService: TestService,
-              private _formBuilder: FormBuilder) {
+              private _formBuilder: FormBuilder, private changeDetectorRefs: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class TestComponent implements OnInit {
           let i = 0;
           this.test.questions.forEach(el => {
             i++;
-            let answers = [];
+            const answers = [];
             answers.push(el.first_question);
             answers.push(el.second_question);
             answers.push(el.right_question);
@@ -141,6 +141,7 @@ export class TestComponent implements OnInit {
   }
 
   submit() {
+    this.loading = true;
     this.is_test_started = false;
     this.passed = true;
     this.test_results = this.test.questions;
@@ -155,13 +156,17 @@ export class TestComponent implements OnInit {
     this.check_results = true;
     this.counter = undefined;
     clearInterval(this.timerRef);
-    const user_answer = <UserAnswerModel> {
+    const user_answer = {
       id_test: this.testId,
       user_points: this.points_count,
       time_spend: this.time_spend
-    };
+    } as UserAnswerModel;
     this.testService.addUserAnswers(user_answer).subscribe(res => {
-
+      this.testService.getTestById(this.testId).subscribe(res => {
+        this.dataSource = new MatTableDataSource(res.top_user_answer);
+        this.changeDetectorRefs.detectChanges();
+        this.loading = false;
+      });
     });
   }
 
@@ -173,7 +178,8 @@ export class TestComponent implements OnInit {
 
   redirectToProfile(id: number) {
     this.userService.getUserRoleById(id).subscribe(data => {
-      let roles = [];
+      const roles = [];
+      // tslint:disable-next-line:forin
       for (const i in data) {
         roles[i] = data[i].name;
       }
@@ -186,7 +192,7 @@ export class TestComponent implements OnInit {
   }
 
   onDelete() {
-    this.testService.deleteTestById(this.testId).subscribe(res=>{
+    this.testService.deleteTestById(this.testId).subscribe(res => {
       this.router.navigate(['/test-list']);
     });
   }

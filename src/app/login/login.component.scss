@@ -128,3 +128,9 @@ input{
   letter-spacing: 0.28px;
   color: $active_border;
 }
+
+@include for-tablet-landscape-up {
+  .form__input{
+    width: 90%;
+  }
+}

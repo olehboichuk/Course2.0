@@ -5,17 +5,18 @@
     <p class="form__headline">Articles</p>
     <div class="cardList selection-off" *ngIf="articles.length > 0">
       <ng-container *ngFor="let article of articles">
-        <mat-card *ngIf="hide(article.id)" [ngClass]="{'cardListItem':true, 'animated zoomOutUp infinite':deletesArticlesClass.includes(article.id)}">
-          <mat-card-title fxLayout="row" style="width: 90%;">
+        <mat-card *ngIf="hide(article.id)"
+                  [ngClass]="{'cardListItem':true, 'animated zoomOutUp infinite':deletesArticlesClass.includes(article.id)}">
+          <mat-card-title style="width: 90%;">
             {{article.id_title}}
           </mat-card-title>
-          <mat-card-subtitle [routerLink]="['/teacher-profile',article.id_author]" fxLayout="row" class="authorName">
+          <mat-card-subtitle [routerLink]="['/teacher-profile',article.id_author]" class="authorName">
             {{article.teacher_first_name}} {{article.teacher_last_name}}
           </mat-card-subtitle>
-          <mat-card-subtitle fxLayout="row">
+          <mat-card-subtitle>
             {{article.time_posted | date:'mediumDate'}} {{article.time_posted | date:'shortTime'}}
           </mat-card-subtitle>
-          <div fxLayout="row" style="max-width: 91%;">
+          <div style="max-width: 91%;">
             <mat-chip-list>
               <mat-chip *ngFor="let l of article.topics">{{l.name}}</mat-chip>
             </mat-chip-list>
@@ -31,6 +32,7 @@
         </mat-card>
       </ng-container>
     </div>
-    <p class="info-text mat-body-2 form__headline" style="font-size: 19px; color: #000000;" *ngIf="!loading&&articles.length <= 0 ">No Articles Yet</p>
+    <p class="info-text mat-body-2 form__headline" style="font-size: 19px; color: #000000;"
+       *ngIf="!loading&&articles.length <= 0 ">No Articles Yet</p>
   </div>
 </main>

@@ -1,6 +1,8 @@
 @import "./../SCSS/default.scss";
 $header_text_color2: #74b9ff;
-
+$color_2: #1c8adb;
+$font_family_1: "Roboto", sans-serif;
+$font_family_2: "Exo 2", sans-serif;
 
 .cardList {
   display: flex;
@@ -53,7 +55,7 @@ $header_text_color2: #74b9ff;
   right: 10px;
   background-color: red;
 }
-/* medium size viewport */
+
 @media screen and (max-width: 959px) {
   /* Column Gap */
   .cardList > *:not(:last-child) {
@@ -64,12 +66,13 @@ $header_text_color2: #74b9ff;
     flex: 0 1 calc(50% - 25px);
   }
 }
-/* small size viewport */
+
 @media screen and (max-width: 599px) {
   .cardList {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    flex-wrap: inherit;
   }
   .cardList > *:not(:last-child) {
     margin-right: unset;
@@ -84,13 +87,9 @@ $header_text_color2: #74b9ff;
   cursor: pointer;
 }
 
-
-
-
 input[id*='toggle'] {
   display: none;
 }
-
 
 .button {
   position: absolute;
@@ -161,11 +160,6 @@ input[id*='toggle']:checked ~ .subbed {
     transition: all 0.5s ease-in-out;
   }
 }
-
-
-$color_2: #1c8adb;
-$font_family_1: "Roboto", sans-serif;
-$font_family_2: "Exo 2", sans-serif;
 
 .text {
   outline: none;

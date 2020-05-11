@@ -41,6 +41,6 @@ export class TestService {
   }
 
   ifUserPassTest(id_test: number) {
-    return this.http.get<UserAnswerModel[]>(this.uri.userTestURL +'/'+ id_test);
+    return this.http.get<UserAnswerModel[]>(this.uri.userTestURL + '/' + id_test);
   }
 }

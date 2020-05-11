@@ -1,4 +1,5 @@
 @import "./../SCSS/default.scss";
+@import "./../SCSS/mixins.scss";
 
 $color_1: #322b6b;
 $color_2: #1c8adb;
@@ -98,6 +99,7 @@ form {
   color: #a9c9e2;
   padding-top: 2px;
 }
+
 .right_answer {
   margin-bottom: 15px;
   font-family: $header_font;
@@ -108,16 +110,17 @@ form {
   padding-top: 2px;
 }
 
-.questions{
+.questions {
   margin-top: 25px;
   margin-left: 5%;
   margin-right: 5%;
 }
-.preview{
+
+.preview {
   margin-top: 25px;
 }
 
-.question{
+.question {
   display: flex;
   justify-content: space-between;
 }
@@ -149,21 +152,44 @@ form {
   font-size: 17px;
   height: 33px;
   outline: none;
+
   &:disabled {
     color: darkgray;
     background: $no_active_color;
   }
 }
-.input_msg_write{
+
+.input_msg_write {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 50%;
 }
-.input{
+
+.input {
   display: flex;
   justify-content: center;
 }
-.write_msg{
+
+.write_msg {
   margin-bottom: 10px;
+}
+
+@include for-tablet-landscape-up {
+  .content {
+    margin: 0;
+  }
+  .form__button {
+    width: 100%;
+  }
+  .que {
+    width: 100%;
+  }
+  .input_msg_write {
+    width: 100%;
+    text-align-last: center;
+  }
+  .form__headline {
+    margin-bottom: 0;
+  }
 }

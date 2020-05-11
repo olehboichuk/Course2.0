@@ -70,6 +70,7 @@ $header_text_color2: #74b9ff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    flex-wrap: inherit;
   }
   .cardList > *:not(:last-child) {
     margin-right: unset;

@@ -27,7 +27,7 @@ export class CommentsSectionComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.lessonId = +params['lessonId'];
+      this.lessonId = +params.lessonId;
       this.userId = jwt_decode(localStorage.getItem('token')).id;
       this.loadComments();
       this.refreshData();
@@ -50,12 +50,12 @@ export class CommentsSectionComponent implements OnInit {
     if (this.newComment.trim() === '') {
       return;
     }
-    const comment = <CommentModel> {
+    const comment = {
       id_author: this.userId,
       id_lesson: this.lessonId,
       contents: this.newComment,
       time_posted: new Date()
-    };
+    } as CommentModel;
     this.lessonService.addComment(comment).subscribe(res => {
       this.newComment = '';
       this.loadComments();
@@ -63,9 +63,10 @@ export class CommentsSectionComponent implements OnInit {
   }
 
   redirectToProfile(id: number) {
-    if (this.userId != id) {
+    if (this.userId !== id) {
       this.userService.getUserRoleById(id).subscribe(data => {
-        let roles = [];
+        const roles = [];
+        // tslint:disable-next-line:forin
         for (const i in data) {
           roles[i] = data[i].name;
         }
@@ -86,7 +87,7 @@ export class CommentsSectionComponent implements OnInit {
       error => {
         this.snackBar.open('Error!');
       }
-    )
+    );
   }
 
 }

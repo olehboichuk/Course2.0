@@ -158,3 +158,24 @@ input[id*='toggle']:checked ~ .subbed {
   opacity: 1;
 }
 
+
+@media (max-width: 620px) {
+  .content{
+    max-height: 45vh;
+    width: 100%;
+  }
+  .input_msg_write input{
+    width: 80%;
+  }
+}
+
+@media (max-width: 460px) {
+  .content{
+    max-height: 45vh;
+    width: 100%;
+  }
+  .input_msg_write input{
+    width: 80%;
+  }
+}
+

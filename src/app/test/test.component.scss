@@ -1,4 +1,5 @@
 @import "./../SCSS/default.scss";
+@import "./../SCSS/mixins.scss";
 
 $color_2: #1c8adb;
 $font_family_1: "Roboto", sans-serif;
@@ -187,4 +188,29 @@ td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
   width: 90%;
   display: flex;
   justify-content: flex-end;
+}
+
+@include for-tablet-landscape-up {
+  .form__headline{
+    text-align: center;
+    margin-top: 60px;
+  }
+  table{
+    width: 95%;
+  }
+  .msg_send_btn{
+    width: 40%;
+    margin: 20px;
+  }
+  .preview{
+    margin-top: 0;
+    width: 95%;
+  }
+  .text{
+    align-self: center;
+    margin: 0;
+  }
+  .start__button{
+    margin: 10px;
+  }
 }

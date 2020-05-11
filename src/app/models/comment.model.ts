@@ -1,4 +1,4 @@
-export class CommentModel{
+export class CommentModel {
   public id: number;
   public id_author: number;
   public author_login: string;

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
-import {UserModel} from "../models/user.model";
-import {ErrorStateMatcher} from "@angular/material/core";
-import {LanguagesList} from "../models/languagesList";
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+import {UserModel} from '../models/user.model';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {LanguagesList} from '../models/languagesList';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -58,11 +58,12 @@ export class RegisterTeacherComponent implements OnInit {
   }
 
   public do_register(): void {
-    let langList: number[] = [];
-    for (let i in this.registerForm.get('languages').value) {
+    const langList: number[] = [];
+    // tslint:disable-next-line:forin
+    for (const i in this.registerForm.get('languages').value) {
       langList[i] = this.registerForm.get('languages').value[i].id;
     }
-    const user = <UserModel>{
+    const user = {
       login: this.registerForm.get('login').value,
       email: this.registerForm.get('email').value,
       password: this.registerForm.get('password').value,
@@ -70,33 +71,34 @@ export class RegisterTeacherComponent implements OnInit {
       last_name: this.registerForm.get('lastName').value,
       about: this.registerForm.get('about').value,
       languageIds: langList,
-      role: ['STUDENT','TEACHER'],
-    };
+      role: ['STUDENT', 'TEACHER'],
+    } as UserModel;
     this.loading = true;
-    this.registerForm.controls['login'].disable();
-    this.registerForm.controls['firstName'].disable();
-    this.registerForm.controls['lastName'].disable();
-    this.registerForm.controls['email'].disable();
-    this.registerForm.controls['password'].disable();
-    this.registerForm.controls['confirmPassword'].disable();
+    this.registerForm.controls.login.disable();
+    this.registerForm.controls.firstName.disable();
+    this.registerForm.controls.lastName.disable();
+    this.registerForm.controls.email.disable();
+    this.registerForm.controls.password.disable();
+    this.registerForm.controls.confirmPassword.disable();
     this.authService.registerUser(user)
       .subscribe(data => {
           console.log('success');
           this.router.navigate(['/login']);
         },
         error => {
-          if(error.error.message)
+          if (error.error.message) {
             this.error = error.error.message;
-          else
-            this.error = 'No Internet connection'
+          } else {
+            this.error = 'No Internet connection';
+          }
           console.warn('REGISTRATION DOESN`T WORK');
           this.loading = false;
-          this.registerForm.controls['login'].enable();
-          this.registerForm.controls['firstName'].enable();
-          this.registerForm.controls['lastName'].enable();
-          this.registerForm.controls['email'].enable();
-          this.registerForm.controls['password'].enable();
-          this.registerForm.controls['confirmPassword'].enable();
+          this.registerForm.controls.login.enable();
+          this.registerForm.controls.firstName.enable();
+          this.registerForm.controls.lastName.enable();
+          this.registerForm.controls.email.enable();
+          this.registerForm.controls.password.enable();
+          this.registerForm.controls.confirmPassword.enable();
         });
   }
 
@@ -118,5 +120,5 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     } else {
       matchingControl.setErrors(null);
     }
-  }
+  };
 }

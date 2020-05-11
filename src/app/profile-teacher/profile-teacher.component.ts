@@ -65,6 +65,7 @@ export class ProfileTeacherComponent implements OnInit {
           this.user = res[0];
           this.star = this.user.rate;
           this.userService.getUserLanguagesById(+this.userId).subscribe(lang => {
+            // tslint:disable-next-line:forin
             for (const i in lang) {
               this.langListNames += lang[i].name + ', ';
               this.langListIds[i] = lang[i].id;
@@ -74,6 +75,7 @@ export class ProfileTeacherComponent implements OnInit {
               allLan => {
                 this.languages = allLan;
                 this.userService.getTeacherSubscribersById(+this.userId).subscribe(sub => {
+                  // tslint:disable-next-line:forin
                   for (const i in sub) {
                     this.subscribeToIdsList[i] = sub[i].id;
                   }
@@ -88,7 +90,7 @@ export class ProfileTeacherComponent implements OnInit {
                     this.subscribeText = 'Subscribe Now';
                     this.subscribe = true;
                   }
-                  this.userService.getTeacherLessonsById(+this.userId).subscribe(res=>{
+                  this.userService.getTeacherLessonsById(+this.userId).subscribe(res => {
                     console.log(res);
                     this.future_hosted_lessons = res['future_hosted_lessons'];
                     this.future_joined_lessons = res['future_joined_lessons'];
@@ -106,6 +108,7 @@ export class ProfileTeacherComponent implements OnInit {
           this.user = res[0];
           this.star = this.user.rate;
           this.userService.getUserLanguages().subscribe(lang => {
+            // tslint:disable-next-line:forin
             for (const i in lang) {
               this.langListNames += lang[i].name + ', ';
               this.langListIds[i] = lang[i].id;
@@ -114,7 +117,7 @@ export class ProfileTeacherComponent implements OnInit {
             this.userService.getLanguages().subscribe(
               allLan => {
                 this.languages = allLan;
-                this.userService.getTeacherLessons().subscribe(res=>{
+                this.userService.getTeacherLessons().subscribe(res => {
                   console.log(res);
                   this.future_hosted_lessons = res['future_hosted_lessons'];
                   this.future_joined_lessons = res['future_joined_lessons'];

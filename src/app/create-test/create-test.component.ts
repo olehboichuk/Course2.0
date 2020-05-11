@@ -28,8 +28,7 @@ export class CreateTestComponent implements OnInit {
               private httpClient: HttpClient,
               private formBuilder: FormBuilder,
               private router: Router,
-              public route: ActivatedRoute,
-              private userService: UserService) {
+              public route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -45,49 +44,52 @@ export class CreateTestComponent implements OnInit {
   }
 
   onSubmit() {
-    const question = <QuestionModel> {
+    this.loading = true;
+    const question = {
       question: this.createTestForm.controls.question.value,
       first_question: this.createTestForm.controls.first_question.value,
       second_question: this.createTestForm.controls.second_question.value,
       third_question: this.createTestForm.controls.third_question.value,
       right_question: this.createTestForm.controls.right_question.value,
-    };
+    } as QuestionModel;
     this.createTestForm.controls.question.setValue(null);
     this.createTestForm.controls.first_question.setValue(null);
     this.createTestForm.controls.second_question.setValue(null);
     this.createTestForm.controls.third_question.setValue(null);
     this.createTestForm.controls.right_question.setValue(null);
     this.test.push(question);
-    console.log(this.test);
+    this.loading = false;
   }
 
   onDelete(i: number) {
-    this.test.splice(i,1);
+    this.test.splice(i, 1);
   }
 
   onEdit(que: QuestionModel) {
-      this.createTestForm.controls.question.setValue(que.question);
-      this.createTestForm.controls.first_question.setValue(que.first_question);
-      this.createTestForm.controls.second_question.setValue(que.second_question);
-      this.createTestForm.controls.third_question.setValue(que.third_question);
-      this.createTestForm.controls.right_question.setValue(que.right_question);
-      this.test.splice(this.test.indexOf(que),1);
+    this.createTestForm.controls.question.setValue(que.question);
+    this.createTestForm.controls.first_question.setValue(que.first_question);
+    this.createTestForm.controls.second_question.setValue(que.second_question);
+    this.createTestForm.controls.third_question.setValue(que.third_question);
+    this.createTestForm.controls.right_question.setValue(que.right_question);
+    this.test.splice(this.test.indexOf(que), 1);
   }
 
   addTest() {
+    this.loading = true;
     if (this.testTitle.trim() === '') {
+      this.loading = false;
       return;
     }
-    const test = <TestModel>{
+    const test = {
       id_author: this.userId,
       questions: this.test,
       test_name: this.testTitle,
       time_posted: new Date(),
       questions_number: this.test.length
-    };
-    console.log(test);
+    } as TestModel;
     this.testService.createTest(test).subscribe(res => {
       console.log('success');
+      this.loading = false;
       this.router.navigate(['/test-list']);
     });
   }

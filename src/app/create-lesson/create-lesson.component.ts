@@ -94,19 +94,18 @@ export class CreateLessonComponent implements OnInit {
           this.createLessonForm.controls.title.setValue(res.title);
           this.createLessonForm.controls.id_language.setValue(res.id_language);
           this.createLessonForm.controls.id_topic.setValue(res.id_topic);
-          this.createLessonForm.controls.date.setValue(new Date(moment(res.start_time).add('3','hour')));
+          this.createLessonForm.controls.date.setValue(new Date(moment(res.start_time).add('3', 'hour')));
           let element;
           this.durations.forEach(el => {
-            if (el.minutes == res.duration_minutes) {
+            if (el.minutes === res.duration_minutes) {
               element = el;
             }
-            ;
           });
           this.createLessonForm.controls.duration_minutes.setValue(element);
           this.createLessonForm.controls.min_attendees.setValue(res.min_attendees);
           this.createLessonForm.controls.max_attendees.setValue(res.max_attendees);
           this.createLessonForm.controls.description.setValue(res.description);
-          this.createLessonForm.controls.time.setValue(new Date(moment(res.start_time).add('3','hour')));
+          this.createLessonForm.controls.time.setValue(new Date(moment(res.start_time).add('3', 'hour')));
           this.loading = false;
         }, error => {
           this.loading = false;
@@ -148,10 +147,10 @@ export class CreateLessonComponent implements OnInit {
         console.log('success');
         this.router.navigate(['/teacher-profile']);
       });
-    }else {
+    } else {
       this.lessonService.updateLesson(lesson).subscribe(res => {
         console.log('success');
-        this.router.navigate(['/lesson',this.lessonId]);
+        this.router.navigate(['/lesson', this.lessonId]);
       });
     }
   }

@@ -62,6 +62,7 @@ export class CreateArticleComponent implements OnInit {
         this.articleService.getArticleById(+this.articleId).subscribe(res => {
           this.createArticleForm.controls.title.setValue(res[0].id_title);
           this.createArticleForm.controls.content.setValue(res[0].contents);
+          // tslint:disable-next-line:forin
           for (const i in res[0].topics) {
             this.topicsListIds[i] = res[0].topics[i].id;
           }
@@ -83,6 +84,7 @@ export class CreateArticleComponent implements OnInit {
   onSubmit() {
     this.loading = true;
     const topicListIds: number[] = [];
+    // tslint:disable-next-line:forin
     for (const i in this.createArticleForm.get('articleTopics').value) {
       topicListIds[i] = this.createArticleForm.get('articleTopics').value[i];
     }

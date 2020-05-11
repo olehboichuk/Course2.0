@@ -143,8 +143,8 @@ $font_family_2: "Exo 2", sans-serif;
   font-family: 'Open Sans', sans-serif;
   letter-spacing: 2px;
   text-transform: uppercase;
-  transform: rotate(535deg);
-  transition: all 3s ease-in-out!important;
+  transform: rotate(720deg);
+  transition: all 0.5s ease-in-out!important;
 }
 
 
@@ -207,4 +207,54 @@ $font_family_2: "Exo 2", sans-serif;
 .comments{
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 620px) {
+  .form__headline{
+    text-align: center;
+    margin-top: 40px;
+  }
+  .lesson__content{
+    flex-direction: column;
+  }
+  .form__user{
+    flex-direction: column;
+    width: 100%;
+  }
+  .footer{
+    width: 100%;
+    flex-direction: column;
+  }
+  .leave, .load, .join{
+    align-self: center;
+    margin-top: 10px;
+  }
+  .text{
+    align-self: center;
+  }
+}
+
+@media (max-width: 460px) {
+  .form__headline{
+    text-align: center;
+    margin-top: 40px;
+  }
+  .lesson__content{
+    flex-direction: column;
+  }
+  .form__user{
+    flex-direction: column;
+    width: 100%;
+  }
+  .footer{
+    width: 100%;
+    flex-direction: column;
+  }
+  .leave, .load, .join{
+    align-self: center;
+    margin-top: 10px;
+  }
+  .text{
+    align-self: center;
+  }
 }

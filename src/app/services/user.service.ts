@@ -23,7 +23,7 @@ export class UserService {
   }
 
   getUserRoleById(id: number) {
-    return this.http.get(this.uri.userRoleURL+'/'+id);
+    return this.http.get(this.uri.userRoleURL + '/' + id);
   }
 
   updateUser(user: UserModel) {

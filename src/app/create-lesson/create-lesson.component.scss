@@ -106,33 +106,7 @@ form {
 }
 
 
-@media (max-width: 900px) {
-  .content {
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-  form {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-}
 
-@media (max-width: 620px) {
-  form {
-    padding-top: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .form__button {
-    align-self: center;
-  }
-}
-
-@media (max-width: 460px) {
-  .form__button {
-    align-self: center;
-  }
-}
 .pickers {
   margin-right: 12px;
 }
@@ -168,4 +142,69 @@ mat-card{
   width: 40%;
   align-self: center;
   text-align: center;
+}
+@media (max-width: 900px) {
+  .content {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  form {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+}
+
+@media (max-width: 620px) {
+  form {
+    padding-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .form__input{
+    margin-bottom: 45px;
+  }
+  .form__button {
+    align-self: center;
+  }
+  .top-line{
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .timepiker{
+    align-self: center;
+  }
+  .title{
+    width: 100%;
+  }
+  .form__group{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 460px) {
+  .form__input{
+    margin-bottom: 45px;
+  }
+  .form__button {
+    align-self: center;
+  }
+  .timepiker{
+    align-self: center;
+  }
+  .top-line{
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .title{
+    width: 100%;
+  }
+  .form__group{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+  }
 }

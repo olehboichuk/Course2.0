@@ -34,15 +34,13 @@ export class ArticleComponent implements OnInit {
       if (paramMap.has('articleId')) {
         this.articleId = paramMap.get('articleId');
         this.articlesService.getArticleById(+this.articleId).subscribe(res => {
-          console.log(res[0]);
           this.article = res[0];
           this.content = this.sanitizer.bypassSecurityTrustHtml(this.article.contents);
           this.userId = jwt_decode(localStorage.getItem('token')).id;
-          if (this.article.id_author == this.userId) {
+          if (this.article.id_author === this.userId) {
             this.isMyProfile = true;
           }
           this.loading = false;
-
         }, error => {
           this.loading = false;
           this.err = true;

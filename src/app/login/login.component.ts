@@ -42,12 +42,13 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
           if (data.active) {
             console.log(data);
+            // tslint:disable-next-line:forin
             for (const i in data.roles) {
               // @ts-ignore
               this.roles[i] = data.roles[i].name;
             }
             localStorage.setItem('token', data.token);
-            localStorage.setItem('role', this.roles.includes('TEACHER')?'TEACHER':'STUDENT');
+            localStorage.setItem('role', this.roles.includes('TEACHER') ? 'TEACHER' : 'STUDENT');
             localStorage.setItem('login', data.login);
             this.userService.getUserRole().subscribe(res => {
               this.loginService._logInUser = true;

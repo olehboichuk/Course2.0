@@ -42,14 +42,14 @@ export class LessonComponent implements OnInit {
         this.lessonId = paramMap.get('lessonId');
         this.lessonService.getLessonById(+this.lessonId).subscribe(lesson => {
           this.lesson = lesson;
-          this.time = new Date(moment(this.lesson.start_time).add('3','hour'));
+          this.time = new Date(moment(this.lesson.start_time).add('3', 'hour'));
           this.joinedCount = lesson.users_join;
           this.joined = this.lesson.if_user_joined !== null;
           this.userId = jwt_decode(localStorage.getItem('token')).id;
-          if (this.lesson.id_teacher == this.userId) {
+          if (this.lesson.id_teacher === this.userId) {
             this.isMyProfile = true;
           }
-          if(this.lesson.max_attendees==this.lesson.users_join&&!this.joined){
+          if (this.lesson.max_attendees === this.lesson.users_join && !this.joined) {
             this.fullUsers = true;
           }
           this.loading = false;
@@ -69,7 +69,7 @@ export class LessonComponent implements OnInit {
   }
 
   onTerminate() {
-    this.lessonService.terminateLesson(+this.lessonId).subscribe(res=>{
+    this.lessonService.terminateLesson(+this.lessonId).subscribe(res => {
       this.router.navigate(['/lesson-list']);
       this.snackBar.open('LESSON TERMINATED', '', {
         duration: 20000,

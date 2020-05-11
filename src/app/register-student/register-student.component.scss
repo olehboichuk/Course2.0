@@ -137,3 +137,12 @@ input{
     text-align: center;
   }
 }
+
+@include for-tablet-landscape-up {
+  .form__headline{
+    margin: 0;
+  }
+  .form__input{
+    width: 90%;
+  }
+}

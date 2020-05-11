@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {Router} from "@angular/router";
-import {ErrorStateMatcher} from "@angular/material/core";
-import {UserModel} from "../models/user.model";
+import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
+import {ErrorStateMatcher} from '@angular/material/core';
+import {UserModel} from '../models/user.model';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -50,7 +50,7 @@ export class RegisterStudentComponent implements OnInit {
   }
 
   public do_register(): void {
-    const user = <UserModel>{
+    const user = {
       login: this.registerForm.get('login').value,
       email: this.registerForm.get('email').value,
       role: ['STUDENT'],
@@ -58,14 +58,14 @@ export class RegisterStudentComponent implements OnInit {
       first_name: this.registerForm.get('first_name').value,
       last_name: this.registerForm.get('last_name').value,
       about: '',
-    };
+    } as UserModel;
     this.loading = true;
-    this.registerForm.controls['login'].disable();
-    this.registerForm.controls['first_name'].disable();
-    this.registerForm.controls['last_name'].disable();
-    this.registerForm.controls['email'].disable();
-    this.registerForm.controls['password'].disable();
-    this.registerForm.controls['confirmPassword'].disable();
+    this.registerForm.controls.login.disable();
+    this.registerForm.controls.first_name.disable();
+    this.registerForm.controls.last_name.disable();
+    this.registerForm.controls.email.disable();
+    this.registerForm.controls.password.disable();
+    this.registerForm.controls.confirmPassword.disable();
     this.authService.registerUser(user)
       .subscribe(data => {
           console.log('success');
@@ -73,19 +73,20 @@ export class RegisterStudentComponent implements OnInit {
           console.error(data);
         },
         error => {
-          if(error.error.message)
+          if (error.error.message) {
             this.error = error.error.message;
-          else
-            this.error = 'No Internet connection'
+          } else {
+            this.error = 'No Internet connection';
+          }
           console.warn('REGISTRATION DOESN`T WORK');
           console.error(error);
           this.loading = false;
-          this.registerForm.controls['login'].enable();
-          this.registerForm.controls['first_name'].enable();
-          this.registerForm.controls['last_name'].enable();
-          this.registerForm.controls['email'].enable();
-          this.registerForm.controls['password'].enable();
-          this.registerForm.controls['confirmPassword'].enable();
+          this.registerForm.controls.login.enable();
+          this.registerForm.controls.first_name.enable();
+          this.registerForm.controls.last_name.enable();
+          this.registerForm.controls.email.enable();
+          this.registerForm.controls.password.enable();
+          this.registerForm.controls.confirmPassword.enable();
         });
   }
 
@@ -107,5 +108,5 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     } else {
       matchingControl.setErrors(null);
     }
-  }
+  };
 }

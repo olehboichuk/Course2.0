@@ -5,7 +5,7 @@ import {LessonModel} from '../models/lesson.model';
 import {CommentModel} from '../models/comment.model';
 import {map} from 'rxjs/operators';
 // @ts-ignore
-import { Response} from "@angular/common/http";
+import {Response} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -54,7 +54,8 @@ export class LessonService {
   }
 
   addComment(comment: CommentModel) {
-    return this.http.post<CommentModel>(this.uri.commentsURL+ '/' + comment.id_lesson, comment).pipe(map((response: Response) => response) );
+    return this.http.post<CommentModel>(this.uri.commentsURL + '/' + comment.id_lesson, comment)
+      .pipe(map((response: Response) => response) );
   }
 
 }

@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
-import {UserModel} from "../models/user.model";
-import {UserService} from "../services/user.service";
-import {DialogComponent} from "../dialog/dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../services/auth.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import {UserModel} from '../models/user.model';
+import {UserService} from '../services/user.service';
+import {DialogComponent} from '../dialog/dialog.component';
+import {MatDialog} from '@angular/material/dialog';
 import {LessonModel} from '../models/lesson.model';
 
 @Component({
@@ -41,33 +41,33 @@ export class ProfileStudentComponent implements OnInit {
 
         this.userService.getUserById(+this.userId).subscribe(res => {
           this.user = res[0];
-          this.userService.getStudentLessonsById(+this.userId).subscribe(res=>{
+          this.userService.getStudentLessonsById(+this.userId).subscribe(res => {
             console.log(res);
             this.future_joined_lessons = res['future_joined_lessons'];
             this.past_joined_lessons = res['past_joined_lessons'];
             this.loading = false;
           });
-        })
+        });
       } else {
         this.isMyProfile = true;
         this.userService.getUser().subscribe(res => {
           this.user = res[0];
-          this.userService.getStudentLessons().subscribe(res=>{
+          this.userService.getStudentLessons().subscribe(res => {
             console.log(res);
             this.future_joined_lessons = res['future_joined_lessons'];
             this.past_joined_lessons = res['past_joined_lessons'];
             this.loading = false;
           });
-        })
+        });
       }
     });
   }
 
   onEdit() {
     this.edited = false;
-    this.changeForm.controls['first_name'].setValue(this.user.first_name);
-    this.changeForm.controls['last_name'].setValue(this.user.last_name);
-    this.changeForm.controls['email'].setValue(this.user.email);
+    this.changeForm.controls.first_name.setValue(this.user.first_name);
+    this.changeForm.controls.last_name.setValue(this.user.last_name);
+    this.changeForm.controls.email.setValue(this.user.email);
   }
 
   onCancel() {
@@ -75,13 +75,13 @@ export class ProfileStudentComponent implements OnInit {
   }
 
   onSave() {
-    const user = <UserModel>{
+    const user = {
       first_name: this.changeForm.get('first_name').value,
       last_name: this.changeForm.get('last_name').value,
       email: this.changeForm.get('email').value,
       about: '',
       id: this.user.id
-    }
+    } as UserModel;
     this.loading = true;
     this.userService.updateUser(user).subscribe(res => {
       this.ngOnInit();

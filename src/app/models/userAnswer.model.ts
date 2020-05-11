@@ -1,4 +1,4 @@
-export class UserAnswerModel{
+export class UserAnswerModel {
   public id_test: number;
   public id_user: number;
   public user_points: number;

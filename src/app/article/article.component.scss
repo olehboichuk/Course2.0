@@ -1,4 +1,5 @@
 @import "./../SCSS/default.scss";
+@import "../SCSS/_mixins.scss";
 
 $color_2: #1c8adb;
 $font_family_1: "Roboto", sans-serif;
@@ -106,4 +107,27 @@ $font_family_2: "Exo 2", sans-serif;
 .edd {
   display: flex;
   align-items: center;
+}
+
+@include for-tablet-landscape-up {
+  .form__headline{
+    text-align: center;
+  }
+  .head{
+    margin-top: 40px;
+    flex-direction: column;
+    margin-right: 0;
+  }
+  .content{
+    max-height: inherit;
+  }
+  .edd{
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-around;
+    margin: 10px;
+  }
+  .form__cont{
+    width: 95%;
+  }
 }

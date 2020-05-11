@@ -1,4 +1,4 @@
-export class QuestionModel{
+export class QuestionModel {
   public id: number;
   public question: string;
   public first_question: string;

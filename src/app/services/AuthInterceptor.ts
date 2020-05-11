@@ -11,7 +11,6 @@ import {CookieService} from 'ngx-cookie';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  // tslint:disable-next-line:variable-name
   constructor(private _cookieService: CookieService) {
   }
 
