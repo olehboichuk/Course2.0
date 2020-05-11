@@ -24,6 +24,17 @@ $header_text_color2: #74b9ff;
   align-items: center;
   flex-direction: column;
   overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: #252525;
+    mix-blend-mode: normal;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #fdfeff;
+    border-radius: 2px;
+  }
 }
 
 input,textarea{
@@ -35,39 +46,11 @@ form {
   width: 50%;
 }
 
-.content::-webkit-scrollbar {
-  width: 8px;
-  background: #fdfeff;
-  mix-blend-mode: normal;
-  border-radius: 8px;
-}
-
-.content::-webkit-scrollbar-thumb {
-  background-color: #d7dce9;
-  border-radius: 6px;
-}
-
 .profile {
   padding: 3%;
-  //width: 80%;
   max-height: 80vh;
-  overflow-y: auto;
-  overflow-x: hidden;
   width: 100%;
 }
-
-.profile::-webkit-scrollbar {
-  width: 8px;
-  background: #fdfeff;
-  mix-blend-mode: normal;
-  border-radius: 8px;
-}
-
-.profile::-webkit-scrollbar-thumb {
-  background-color: #d7dce9;
-  border-radius: 6px;
-}
-
 
 .img {
   width: 33%;
@@ -378,5 +361,19 @@ mat-expansion-panel {
   }
   .player__info{
     width: 98%;
+  }
+  .profile{
+    max-height: inherit;
+  }
+  .player {
+    flex-direction: column;
+  }
+  .photo-rating {
+    width: 100%;
+  }
+  .icon-teacher {
+    width: 50%;
+    object-fit: scale-down;
+    align-self: center;
   }
 }

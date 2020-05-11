@@ -44,32 +44,7 @@ $font_family_2: "Exo 2", sans-serif;
   align-self: center;
 }
 
-@include for-tablet-landscape-up {
-  .content {
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-  form {
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .cardList {
-    width: 80%;
-    align-self: center;
-  }
-}
 
-@include for-phone-only {
-  form {
-    padding-top: 10px;
-    margin-left: 10%;
-    margin-right: 10%;
-  }
-  .cardList {
-    width: 99%;
-    align-self: center;
-  }
-}
 
 .mat-card:not([class*=mat-elevation-z]) {
   box-shadow: -20px 20px 20px 0px rgba(0, 0, 0, .2), 0 1px 1px 0 rgba(0, 0, 0, .14), 0 1px 3px 0 rgba(0, 0, 0, .12) !important;
@@ -119,4 +94,41 @@ $font_family_2: "Exo 2", sans-serif;
 
 .mat-card-subtitle {
   margin-bottom: 0 !important;
+}
+
+@include for-tablet-landscape-up {
+  .block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .content {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  form {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .cardList {
+    width: 80%;
+    align-self: center;
+  }
+}
+
+@include for-phone-only {
+  .block{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  form {
+    padding-top: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+  .cardList {
+    width: 99%;
+    align-self: center;
+  }
 }

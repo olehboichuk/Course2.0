@@ -30,6 +30,17 @@ input, textarea {
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: #252525;
+    mix-blend-mode: normal;
+    border-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #fdfeff;
+    border-radius: 2px;
+  }
 }
 
 form {
@@ -56,39 +67,11 @@ form {
   }
 }
 
-.content::-webkit-scrollbar {
-  width: 8px;
-  background: #fdfeff;
-  mix-blend-mode: normal;
-  border-radius: 8px;
-}
-
-.content::-webkit-scrollbar-thumb {
-  background-color: #d7dce9;
-  border-radius: 6px;
-}
-
 .profile {
   padding: 3%;
-  //width: 80%;
   align-self: self-start;
   max-height: 80vh;
-  height: 80vh;
-  overflow-y: auto;
-  overflow-x: hidden;
   width: 100%;
-}
-
-.profile::-webkit-scrollbar {
-  width: 8px;
-  background: #fdfeff;
-  mix-blend-mode: normal;
-  border-radius: 8px;
-}
-
-.profile::-webkit-scrollbar-thumb {
-  background-color: #d7dce9;
-  border-radius: 6px;
 }
 
 
@@ -548,5 +531,8 @@ mat-expansion-panel {
   }
   .player__info{
     width: 98%;
+  }
+  .profile{
+    max-height: inherit;
   }
 }
