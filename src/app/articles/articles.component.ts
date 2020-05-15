@@ -3,7 +3,6 @@ import {ArticleService} from '../services/article.service';
 import {UserService} from '../services/user.service';
 import {ArticlesModel} from '../models/articles.model';
 import * as jwt_decode from 'jwt-decode';
-import {delay} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
